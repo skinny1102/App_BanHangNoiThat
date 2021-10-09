@@ -3,7 +3,9 @@ package com.example.addtocard1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -15,6 +17,9 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
+import com.example.addtocard1.Fragment.DetailProductFragment;
+import com.example.addtocard1.Fragment.HomeFragment;
+import com.example.addtocard1.my_Interface.interfaceProduct;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import kotlin.reflect.TypeOfKt;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     private AHBottomNavigation ahBottomNavigation;
     private AHBottomNavigationViewPager ahBottomNavigationViewPager;
     private  ViewPagerAdapter adapter;
@@ -31,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView viewAnimation;
 
     private int mCountProduct;
-
+    HomeFragment homeFragment;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefCart = database.getReference("cart");
 
@@ -75,14 +80,14 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 switch (position){
                     case 0:
-                        setTitle("Home");
-                        return;
+                            return;
                     case 1:
                         setTitle("Card");
                         return;
                     case 2:
                         setTitle("Notice");
                         return;
+
                     default:
                         setTitle("Home");
                 }
@@ -120,4 +125,15 @@ public class MainActivity extends AppCompatActivity {
 
         return mCountProduct;
     }
+
+    public AHBottomNavigationViewPager getAhBottomNavigationViewPager() {
+        return ahBottomNavigationViewPager;
+    }
+
+    public void setAhBottomNavigationViewPager(AHBottomNavigationViewPager ahBottomNavigationViewPager) {
+        this.ahBottomNavigationViewPager = ahBottomNavigationViewPager;
+    }
+
+
+
 }

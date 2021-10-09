@@ -1,21 +1,29 @@
-package com.example.addtocard1;
+package com.example.addtocard1.Fragment;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
-import com.example.addtocard1.Cart.CartUser;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.example.addtocard1.Animation.AnimationUtil;
+
+import com.example.addtocard1.MainActivity;
+import com.example.addtocard1.Product;
+import com.example.addtocard1.ProductAdapter;
+import com.example.addtocard1.ProductAdapter1;
+import com.example.addtocard1.R;
+import com.example.addtocard1.my_Interface.IClickProuductListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +42,7 @@ public class HomeFragment extends Fragment {
     private String USER_ID = "456";
     private ProductAdapter productAdapter;
     private ProductAdapter1 productAdapter1;
+    private AHBottomNavigationViewPager ahBottomNavigationViewPager;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("product");
@@ -154,8 +163,14 @@ public class HomeFragment extends Fragment {
                     }, new ProductAdapter.AddtoCartProduct() {
                         @Override
                         public void onClickAddToCartProduct(Product product) {
-                         myRefCart.child(USER_ID).push().setValue(product);
+                            myRefCart.child(USER_ID).push().setValue(product);
 
+                        }
+                    }, new IClickProuductListener() {
+                        /// onlick item show itemproduct details
+                        @Override
+                        public void onClickItemProduct(Product product) {
+                            showDetailProduct(product);
                         }
                     });
                 }
@@ -188,6 +203,18 @@ public class HomeFragment extends Fragment {
         });
 
     }
+    public void showDetailProduct(Product product){
+        ahBottomNavigationViewPager= mainActivity.findViewById(R.id.AHBottomNavigationViewPager);
+                DetailProductFragment detailProductFragment = new DetailProductFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("obj_product",product);
+                detailProductFragment.setArguments(bundle);
+                FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_home,detailProductFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+    }
+
 
 }
 

@@ -1,6 +1,8 @@
 package com.example.addtocard1;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     public String idProduct;
     public String nameProduct;
     public String descriptionProduct;

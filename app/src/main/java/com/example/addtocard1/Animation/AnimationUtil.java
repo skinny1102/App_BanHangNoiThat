@@ -1,4 +1,4 @@
-package com.example.addtocard1;
+package com.example.addtocard1.Animation;
 
 import android.graphics.Bitmap;
 import android.view.View;
