@@ -1,5 +1,6 @@
 package com.example.addtocard1.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.example.addtocard1.Animation.AnimationUtil;
 
+import com.example.addtocard1.DetailProductActivity;
 import com.example.addtocard1.MainActivity;
 import com.example.addtocard1.Product;
 import com.example.addtocard1.ProductAdapter;
@@ -204,15 +206,20 @@ public class HomeFragment extends Fragment {
 
     }
     public void showDetailProduct(Product product){
-        ahBottomNavigationViewPager= mainActivity.findViewById(R.id.AHBottomNavigationViewPager);
-                DetailProductFragment detailProductFragment = new DetailProductFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("obj_product",product);
-                detailProductFragment.setArguments(bundle);
-                FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_home,detailProductFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+
+         Intent myIntent = new Intent(mainActivity, DetailProductActivity.class);
+         myIntent.putExtra("obj_product",product);
+         mainActivity.startActivity(myIntent);
+
+//        ahBottomNavigationViewPager= mainActivity.findViewById(R.id.AHBottomNavigationViewPager);
+//                DetailProductFragment detailProductFragment = new DetailProductFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("obj_product",product);
+//                detailProductFragment.setArguments(bundle);
+//                FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_home,detailProductFragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
     }
 
 

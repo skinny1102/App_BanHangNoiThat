@@ -5,7 +5,9 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="red">#F32424</color>
+    <color name="redCart">#F63C3C</color>
     <color name="gray">#9B9C9C</color>
+    <color name="bggray">#CCCDCD</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white1">#F7F7F7</color>

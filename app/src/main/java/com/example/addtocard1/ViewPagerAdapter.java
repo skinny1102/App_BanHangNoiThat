@@ -25,7 +25,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new CardFragment();
             case 2:
                 return new NoticeFragment();
-
             default:
                 return new HomeFragment();
         }

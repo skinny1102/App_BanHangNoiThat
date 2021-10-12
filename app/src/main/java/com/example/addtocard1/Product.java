@@ -11,7 +11,6 @@ public class Product implements Serializable {
     public  String imgResource;
     public String categories;
     private boolean isAddToCard;
-
     public Product(){
 
     }

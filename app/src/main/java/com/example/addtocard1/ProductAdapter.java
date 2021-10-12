@@ -22,6 +22,7 @@ import com.example.addtocard1.Fragment.DetailProductFragment;
 import com.example.addtocard1.my_Interface.IClickProuductListener;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>{
@@ -66,7 +67,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.Product
         }
         Glide.with(context).load(product.imgResource).into(holder.imProduct);
         holder.tvProductName.setText(product.getNameProduct());
-        holder.tvDescription.setText(Integer.toString(product.getPriceProduct()) + " đ");
+        holder.tvDescription.setText(NumberFormat.getIntegerInstance().format(product.getPriceProduct()) + " vnđ");
         if(product.isAddToCard()){
             holder.imgAddToCard.setBackgroundResource(R.drawable.bg_gray_conner_6);
 
