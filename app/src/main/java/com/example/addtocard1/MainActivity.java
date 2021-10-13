@@ -78,19 +78,7 @@ public class MainActivity extends AppCompatActivity  {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position){
-                    case 0:
-                            return;
-                    case 1:
-                        setTitle("Card");
-                        return;
-                    case 2:
-                        setTitle("Notice");
-                        return;
 
-                    default:
-                        setTitle("Home");
-                }
                 ahBottomNavigation.setCurrentItem(position);
             }
 

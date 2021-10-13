@@ -17,7 +17,7 @@ import com.example.addtocard1.Product;
 import com.example.addtocard1.R;
 import com.example.addtocard1.my_Interface.interfaceProduct;
 
-public class DetailProductFragment extends Fragment implements interfaceProduct {
+public class DetailProductFragment extends Fragment {
     public View view;
     Product product;
     private MainActivity mainActivity;
@@ -28,6 +28,7 @@ public class DetailProductFragment extends Fragment implements interfaceProduct 
         view = inflater.inflate(R.layout.fragment_detailproduct, container, false);
         mainActivity = (MainActivity) getActivity();
         // Inflate the layout for this fragment
+        getview();
         setImgBack();
 
             Product product = (Product) getArguments().get("obj_product");
@@ -40,10 +41,6 @@ public class DetailProductFragment extends Fragment implements interfaceProduct 
         return view;
     }
 
-    @Override
-    public void iProduct(Product product) {
-
-    }
     public  void setImgBack(){
         ImageView imgback = view.findViewById(R.id.img_back);
         imgback.setOnClickListener(new View.OnClickListener() {
@@ -58,5 +55,9 @@ public class DetailProductFragment extends Fragment implements interfaceProduct 
                 transaction.commit();
             }
         });
+    }
+
+    public void getview(){
+
     }
 }

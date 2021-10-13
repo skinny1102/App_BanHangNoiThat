@@ -1,6 +1,7 @@
 package com.example.addtocard1;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Product implements Serializable {
     public String idProduct;
@@ -10,11 +11,13 @@ public class Product implements Serializable {
     public int quantity;
     public  String imgResource;
     public String categories;
+    public List<String> listImgResource;
     private boolean isAddToCard;
     public Product(){
 
     }
-    public Product(String idProduct, String nameProduct, String descriptionProduct, int priceProduct, int quantity, String imgResource, String categories) {
+
+    public Product(String idProduct, String nameProduct, String descriptionProduct, int priceProduct, int quantity, String imgResource, String categories, List<String> listImgResource) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
@@ -22,6 +25,16 @@ public class Product implements Serializable {
         this.quantity = quantity;
         this.imgResource = imgResource;
         this.categories = categories;
+        this.listImgResource = listImgResource;
+
+    }
+
+    public List<String> getListImgResource() {
+        return listImgResource;
+    }
+
+    public void setListImgResource(List<String> listImgResource) {
+        this.listImgResource = listImgResource;
     }
 
     public String getIdProduct() {

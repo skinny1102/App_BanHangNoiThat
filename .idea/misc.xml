@@ -33,6 +33,12 @@
         <entry key="..\:/Users/TGooD/Desktop/Android_Addtocard/app/src/main/res/layout/item_product.xml" value="0.13125" />
         <entry key="..\:/Users/TGooD/Desktop/Android_Addtocard/app/src/main/res/layout/item_product1.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/TGooD/Desktop/Android_Addtocard/app/src/main/res/layout/product_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/drawable/circleindicator_round.xml" value="0.1703125" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/drawable/texthint_style.xml" value="0.2703125" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_detail_product.xml" value="0.4" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/fragment_card.xml" value="0.15416666666666667" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/fragment_home.xml" value="0.15416666666666667" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/itemimgproduct_slide.xml" value="0.19895833333333332" />
       </map>
     </option>
   </component>

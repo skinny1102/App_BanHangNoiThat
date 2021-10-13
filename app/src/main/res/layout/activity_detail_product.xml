@@ -7,6 +7,7 @@
     tools:context=".DetailProductActivity"
     android:background="@color/white"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,19 +50,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <androidx.cardview.widget.CardView
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewpager"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="4dp"
-                        >
-                        <ImageView
-                            android:id="@id/img_product"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:src="@drawable/banner"
-                            android:scaleType="centerCrop"
-                            ></ImageView>
-                    </androidx.cardview.widget.CardView>
+                        android:layout_height="220dp">
+
+                    </androidx.viewpager.widget.ViewPager>
+                    <me.relex.circleindicator.CircleIndicator
+                        android:id="@+id/circleindicator"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="30dp"
+                        app:ci_drawable="@drawable/circleindicator_round"
+                        ></me.relex.circleindicator.CircleIndicator>
+
                     <TextView
                         android:background="@color/white"
                         android:id="@+id/tv_product_name"
@@ -190,12 +192,40 @@
                   android:layout_width="0dp"
                   android:layout_weight="8"
                   android:layout_height="match_parent"
-                  android:background="@color/red">
+                  >
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent">
+                      <ImageView
+                          android:id="@+id/img_minus"
+                          android:layout_width="30dp"
+                          android:layout_height="match_parent"
+                          android:src="@drawable/minus_lack">
+                      </ImageView>
+                     <EditText
+                         android:layout_width="50dp"
+                         android:layout_height="match_parent"
+                         android:hint="@string/edittext_hint"
+                         android:inputType = "number"
+                         android:gravity="center"
+                         android:cursorVisible="false"
+                         android:id="@+id/edit_quantity"
+                         android:text="@string/edittext_hint"
+                         ></EditText>
+                        <ImageView
+                            android:id="@+id/img_plus"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/plus_black">
+
+                        </ImageView>
+                  </LinearLayout>
                   <androidx.cardview.widget.CardView
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       app:cardBackgroundColor="@color/redCart">
                       <TextView
+                          android:id="@+id/img_add_to_cart"
                           android:layout_width="match_parent"
                           android:layout_height="match_parent"
                           android:text="Thêm vào giỏ "

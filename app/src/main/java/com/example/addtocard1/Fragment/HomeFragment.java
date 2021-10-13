@@ -82,7 +82,8 @@ public class HomeFragment extends Fragment {
                             productObj.getPriceProduct(),
                             productObj.getQuantity(),
                             productObj.getImgResource(),
-                            productObj.getCategories()));
+                            productObj.getCategories(),
+                            productObj.getListImgResource()));
                     productAdapter1.setData(list1, new ProductAdapter1.IClickAddToCartListener() {
                         @Override
                         public void onClickAddToCart( final ImageView imgAddToCart, Product product) {
@@ -137,7 +138,8 @@ public class HomeFragment extends Fragment {
                             productObj.getPriceProduct(),
                             productObj.getQuantity(),
                             productObj.getImgResource(),
-                            productObj.getCategories()));
+                            productObj.getCategories(),
+                            productObj.getListImgResource()));
                     productAdapter.setData(list, new ProductAdapter.IClickAddToCartListener() {
                         @Override
                         public void onClickAddToCart(final ImageView imgAddToCart, Product product) {
