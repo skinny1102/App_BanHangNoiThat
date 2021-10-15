@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.example.addtocard1.Animation.AnimationUtil;
@@ -119,6 +120,7 @@ public class HomeFragment extends Fragment {
         rcvProduct1.setAdapter(productAdapter1);
     }
     private void getRcv2() {
+
         rcvProduct = mView.findViewById(R.id.rcv_product);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mainActivity);
         rcvProduct.setLayoutManager(linearLayoutManager);
@@ -146,10 +148,13 @@ public class HomeFragment extends Fragment {
                             AnimationUtil.translateAnimation(mainActivity.getViewAnimation(), imgAddToCart, mainActivity.getViewEndAnimation(), new Animation.AnimationListener() {
                                 @Override
                                 public void onAnimationStart(Animation animation) {
-                                    product.setAddToCard(true);
-                                    imgAddToCart.setBackgroundResource(R.drawable.bg_gray_conner_6);
+//                                    product.setAddToCard(true);
+//                                   imgAddToCart.setBackgroundResource(R.drawable.bg_gray_conner_6);
                                     productAdapter.notifyDataSetChanged();
-                                    mainActivity.setCountProductCart(mainActivity.getmCountProduct() + 1);
+//                                  mainActivity.setCountProductCart(mainActivity.getmCountProduct() + 1);
+
+
+
 
                                 }
 
@@ -167,8 +172,12 @@ public class HomeFragment extends Fragment {
                     }, new ProductAdapter.AddtoCartProduct() {
                         @Override
                         public void onClickAddToCartProduct(Product product) {
-                            myRefCart.child(USER_ID).push().setValue(product);
+//                             myRefCart.child(USER_ID).child(product.idProduct)
+//                            String str = product.getIdProduct();
+                            product.setQuantity(1);
+                            myRefCart.child(USER_ID).child(product.idProduct).setValue(product);
 
+//
                         }
                     }, new IClickProuductListener() {
                         /// onlick item show itemproduct details
@@ -194,10 +203,16 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    mainActivity.setCountProductCart((int) postSnapshot.getChildrenCount());
+                if(snapshot.getValue()==null){
+                    mainActivity.setCountProductCart(0);
 
+                }else {
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        mainActivity.setCountProductCart((int) postSnapshot.getChildrenCount());
+
+                    }
                 }
+
             }
 
             @Override
@@ -213,15 +228,7 @@ public class HomeFragment extends Fragment {
          myIntent.putExtra("obj_product",product);
          mainActivity.startActivity(myIntent);
 
-//        ahBottomNavigationViewPager= mainActivity.findViewById(R.id.AHBottomNavigationViewPager);
-//                DetailProductFragment detailProductFragment = new DetailProductFragment();
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("obj_product",product);
-//                detailProductFragment.setArguments(bundle);
-//                FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragment_home,detailProductFragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
+
     }
 
 

@@ -2,24 +2,24 @@ package com.example.addtocard1;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserAccount implements Serializable {
 
     private String userName;
     private String userType;
 
     private boolean active;
 
-//    public UserAccount(String userName, String userType)  {
-//        this.userName= userName;
-//        this.userType = userType;
-//        this.active= true;
-//    }
-//
-//    public UserAccount(String userName, String userType, boolean active)  {
-//        this.userName= userName;
-//        this.userType = userType;
-//        this.active= active;
-//    }
+    public UserAccount(String userName, String userType)  {
+        this.userName= userName;
+        this.userType = userType;
+        this.active= true;
+    }
+
+    public UserAccount(String userName, String userType, boolean active)  {
+        this.userName= userName;
+        this.userType = userType;
+        this.active= active;
+    }
 
     public String getUserType() {
         return userType;

@@ -32,11 +32,12 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.Product
     private AddtoCartProduct addToCartListener ;
     private Context context;
     private MainActivity mainActivity;
-    private AHBottomNavigationViewPager ahBottomNavigationViewPager;
+
     public ProductAdapter(Context context) {
         this.context = context;
     }
     private IClickProuductListener iClickProuductListener;
+
     public  void setData(List<Product> list , IClickAddToCartListener listener, AddtoCartProduct addToCartListener,IClickProuductListener iClickProuductListener){
         this.mListProduct = list;
         this.iClickAddToCartListener = listener;
@@ -63,25 +64,29 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.Product
     public void onBindViewHolder(@NonNull final ProductViewHolder holder, int position) {
         Product product = mListProduct.get(position);
         if(product == null){
-            return;
+//            return ;
+            notifyDataSetChanged();
         }
+
         Glide.with(context).load(product.imgResource).into(holder.imProduct);
         holder.tvProductName.setText(product.getNameProduct());
         holder.tvDescription.setText(NumberFormat.getIntegerInstance().format(product.getPriceProduct()) + " vnđ");
-        if(product.isAddToCard()){
-            holder.imgAddToCard.setBackgroundResource(R.drawable.bg_gray_conner_6);
-
-        }else{
-            holder.imgAddToCard.setBackgroundResource(R.drawable.bg_red_conner_6);
-        }
+//        if(product.isAddToCard()){
+//            holder.imgAddToCard.setBackgroundResource(R.drawable.bg_gray_conner_6);
+//
+//        }else{
+//            holder.imgAddToCard.setBackgroundResource(R.drawable.bg_red_conner_6);
+//        }
+        holder.imgAddToCard.setBackgroundResource(R.drawable.bg_red_conner_6);
         holder.imgAddToCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!product.isAddToCard()){
-                    iClickAddToCartListener.onClickAddToCart(holder.imgAddToCard,product);
-                    addToCartListener.onClickAddToCartProduct(product);
-
-                }
+                iClickAddToCartListener.onClickAddToCart(holder.imgAddToCard,product);
+                addToCartListener.onClickAddToCartProduct(product);
+//                if(!product.isAddToCard()){
+//
+//
+//                }
 
             }
         });
