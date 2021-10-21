@@ -20,6 +20,8 @@ import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 import com.example.addtocard1.Fragment.DetailProductFragment;
 import com.example.addtocard1.Fragment.HomeFragment;
 import com.example.addtocard1.my_Interface.interfaceProduct;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,17 +36,39 @@ public class MainActivity extends AppCompatActivity  {
     private  ViewPagerAdapter adapter;
     View viewEndAnimation;
     ImageView viewAnimation;
+    User g_User;
+    public String G_uid;
+
+    public String getG_uid() {
+        return G_uid;
+    }
+
+    public void setG_uid(String g_uid) {
+        G_uid = g_uid;
+    }
 
     private int mCountProduct;
     HomeFragment homeFragment;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefCart = database.getReference("cart");
+   private boolean flag = false;
+
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        getUserInformation();
+
         viewEndAnimation = findViewById(R.id.view_end_animation);
         viewAnimation = findViewById(R.id.view_animation);
 
@@ -57,7 +81,7 @@ public class MainActivity extends AppCompatActivity  {
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.home_icon, R.color.color_tab_1);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.tab_2, R.drawable.card_icon, R.color.color_tab_2);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.drawable.notice_icon, R.color.color_tab_3);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.drawable.user_icon, R.color.color_tab_3);
 
 // Add items
         ahBottomNavigation.addItem(item1);
@@ -101,16 +125,20 @@ public class MainActivity extends AppCompatActivity  {
     }
     public void  setCountProductCart(int count){
         mCountProduct = count;
-        AHNotification notification = new AHNotification.Builder()
-                .setText(String.valueOf(count))
-                .setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red))
-                .setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white))
-                .build();
-        ahBottomNavigation.setNotification(notification, 1);
+        if(count==0){
+            ahBottomNavigation.setNotification("", 1);
+        }else {
+            AHNotification notification = new AHNotification.Builder()
+                    .setText(String.valueOf(count))
+                    .setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red))
+                    .setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white))
+                    .build();
+            ahBottomNavigation.setNotification(notification, 1);
+        }
+
     }
 
     public int getmCountProduct() {
-
         return mCountProduct;
     }
 
@@ -121,7 +149,16 @@ public class MainActivity extends AppCompatActivity  {
     public void setAhBottomNavigationViewPager(AHBottomNavigationViewPager ahBottomNavigationViewPager) {
         this.ahBottomNavigationViewPager = ahBottomNavigationViewPager;
     }
-
+    public void getUserInformation(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user ==null){
+            setG_uid(null);
+        }else {
+                // UID specific to the provider
+                String uid = user.getUid();
+                setG_uid(uid);
+        }
+    }
 
 
 }

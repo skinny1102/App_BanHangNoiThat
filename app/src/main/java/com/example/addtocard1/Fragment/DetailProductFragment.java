@@ -22,6 +22,7 @@ public class DetailProductFragment extends Fragment {
     Product product;
     private MainActivity mainActivity;
     private AHBottomNavigationViewPager ahBottomNavigationViewPager;
+    public String USER_ID = mainActivity.getG_uid();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

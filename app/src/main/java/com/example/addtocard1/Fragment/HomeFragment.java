@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,17 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.example.addtocard1.Adapter.Categories;
+import com.example.addtocard1.Adapter.CategoriesAdapter;
+import com.example.addtocard1.Adapter.CategoriesAdapter1;
 import com.example.addtocard1.Animation.AnimationUtil;
 
 import com.example.addtocard1.DetailProductActivity;
 import com.example.addtocard1.MainActivity;
 import com.example.addtocard1.Product;
-import com.example.addtocard1.ProductAdapter;
-import com.example.addtocard1.ProductAdapter1;
+import com.example.addtocard1.Adapter.ProductAdapter;
+import com.example.addtocard1.Adapter.ProductAdapter1;
 import com.example.addtocard1.R;
 import com.example.addtocard1.my_Interface.IClickProuductListener;
 import com.google.firebase.database.DataSnapshot;
@@ -38,14 +41,17 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView rcvProduct,rcvProduct1;
+    private RecyclerView rcvProduct,rcvProduct1,rcvCategories;
     private View mView;
     private MainActivity mainActivity;
     private List<Product> list, list1;
-    private String USER_ID = "456";
+    public String USER_ID ;
     private ProductAdapter productAdapter;
     private ProductAdapter1 productAdapter1;
     private AHBottomNavigationViewPager ahBottomNavigationViewPager;
+    ArrayList<Categories> arrayListCategories;
+    GridView gridView;
+    CategoriesAdapter categoriesAdapter;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("product");
@@ -58,9 +64,11 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         mainActivity = (MainActivity) getActivity();
+         USER_ID  = mainActivity.getG_uid();
         getCountProductCart();
         getRcv1();
         getRcv2();
+        getViewCategories();
         return mView;
     }
     private void getRcv1(){
@@ -87,7 +95,7 @@ public class HomeFragment extends Fragment {
                             productObj.getListImgResource()));
                     productAdapter1.setData(list1, new ProductAdapter1.IClickAddToCartListener() {
                         @Override
-                        public void onClickAddToCart( final ImageView imgAddToCart, Product product) {
+                        public void onClickAddToCart(final ImageView imgAddToCart, Product product) {
                             AnimationUtil.translateAnimation(mainActivity.getViewAnimation(), imgAddToCart, mainActivity.getViewEndAnimation(), new Animation.AnimationListener() {
                                 @Override
                                 public void onAnimationStart(Animation animation) {
@@ -96,16 +104,28 @@ public class HomeFragment extends Fragment {
 
                                 @Override
                                 public void onAnimationEnd(Animation animation) {
-                                    product.setAddToCard(true);
-                                    imgAddToCart.setBackgroundResource(R.drawable.bg_gray_conner_6);
-                                    productAdapter1.notifyDataSetChanged();
-                                    mainActivity.setCountProductCart(mainActivity.getmCountProduct()+1);
+//                                    product.setAddToCard(true);
+//                                    imgAddToCart.setBackgroundResource(R.drawable.bg_gray_conner_6);
+//                                    productAdapter1.notifyDataSetChanged();
+//                                    mainActivity.setCountProductCart(mainActivity.getmCountProduct()+1);
                                 }
+
                                 @Override
                                 public void onAnimationRepeat(Animation animation) {
 
                                 }
                             });
+                        }
+                    }, new ProductAdapter.AddtoCartProduct() {
+                        @Override
+                        public void onClickAddToCartProduct(Product product) {
+                            product.setQuantity(1);
+                            myRefCart.child(USER_ID).child(product.idProduct).setValue(product);
+                        }
+                    }, new IClickProuductListener() {
+                        @Override
+                        public void onClickItemProduct(Product product) {
+                            showDetailProduct(product);
                         }
                     });
                 }
@@ -172,10 +192,10 @@ public class HomeFragment extends Fragment {
                     }, new ProductAdapter.AddtoCartProduct() {
                         @Override
                         public void onClickAddToCartProduct(Product product) {
-//                             myRefCart.child(USER_ID).child(product.idProduct)
-//                            String str = product.getIdProduct();
+
                             product.setQuantity(1);
                             myRefCart.child(USER_ID).child(product.idProduct).setValue(product);
+//
 
 //
                         }
@@ -223,12 +243,32 @@ public class HomeFragment extends Fragment {
 
     }
     public void showDetailProduct(Product product){
-
          Intent myIntent = new Intent(mainActivity, DetailProductActivity.class);
          myIntent.putExtra("obj_product",product);
+         myIntent.putExtra("USER_ID",mainActivity.getG_uid());
          mainActivity.startActivity(myIntent);
 
 
+    }
+    public void getViewCategories(){
+        rcvCategories =mView.findViewById(R.id.rcv_list_categories);
+        categoriesAdapter = new CategoriesAdapter(mainActivity);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager( mainActivity,RecyclerView.HORIZONTAL,false);
+    rcvCategories.setLayoutManager(linearLayoutManager);
+        categoriesAdapter.setData(getListCategories());
+      rcvCategories.setAdapter(categoriesAdapter);
+    }
+
+    private List<Categories> getListCategories() {
+        List<Categories> list = new ArrayList<>();
+
+        list.add(new Categories("Giường",R.drawable.bead_categories));
+        list.add(new Categories("Ghế",R.drawable.chair_categories));
+        list.add(new Categories("Bàn",R.drawable.table_categories));
+        list.add(new Categories("Sofa",R.drawable.sofa_categories));
+        list.add(new Categories("Tủ",R.drawable.tuquanao_categories));
+        list.add(new Categories("Kệ",R.drawable.kegia_categories));
+        return list;
     }
 
 

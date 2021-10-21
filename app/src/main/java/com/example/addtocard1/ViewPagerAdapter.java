@@ -6,9 +6,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.addtocard1.Fragment.CardFragment;
-import com.example.addtocard1.Fragment.DetailProductFragment;
 import com.example.addtocard1.Fragment.HomeFragment;
-import com.example.addtocard1.Fragment.NoticeFragment;
+import com.example.addtocard1.Fragment.UserFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -24,7 +23,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new CardFragment();
             case 2:
-                return new NoticeFragment();
+                return new UserFragment();
             default:
                 return new HomeFragment();
         }

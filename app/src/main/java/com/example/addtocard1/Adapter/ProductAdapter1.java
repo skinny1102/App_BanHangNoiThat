@@ -1,4 +1,4 @@
-package com.example.addtocard1;
+package com.example.addtocard1.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.addtocard1.Product;
+import com.example.addtocard1.R;
+import com.example.addtocard1.my_Interface.IClickProuductListener;
 
 import java.util.List;
 
@@ -19,13 +23,17 @@ public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.Produc
     private List<Product> mListProduct;
     private IClickAddToCartListener iClickAddToCartListener;
     private Context context;
+    private ProductAdapter.AddtoCartProduct addToCartListener ;
+    private IClickProuductListener iClickProuductListener;
     public ProductAdapter1(Context context) {
         this.context = context;
     }
 
-    public  void setData(List<Product> list , IClickAddToCartListener listener){
+    public  void setData(List<Product> list , IClickAddToCartListener listener, ProductAdapter.AddtoCartProduct addToCartListener, IClickProuductListener iClickProuductListener){
         this.mListProduct = list;
         this.iClickAddToCartListener = listener;
+        this.addToCartListener=addToCartListener;
+        this.iClickProuductListener=iClickProuductListener;
         notifyDataSetChanged();
     }
     public interface IClickAddToCartListener{
@@ -57,10 +65,18 @@ public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.Produc
         holder.imgAddToCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!product.isAddToCard()){
-                    iClickAddToCartListener.onClickAddToCart(holder.imgAddToCard,product);
-                }
+                iClickAddToCartListener.onClickAddToCart(holder.imgAddToCard,product);
+                addToCartListener.onClickAddToCartProduct(product);
+//                if(!product.isAddToCard()){
+//
+//                }
 
+            }
+        });
+        holder.layoutItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iClickProuductListener.onClickItemProduct(product);
             }
         });
     }
@@ -77,13 +93,14 @@ public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.Produc
         private ImageView imProduct;
         private TextView tvProductName , tvDescription;
         private  ImageView imgAddToCard;
-
+        private CardView layoutItem;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             imProduct = (ImageView) itemView.findViewById(R.id.img_product);
             tvProductName = itemView.findViewById(R.id.tv_product_name);
             tvDescription = itemView.findViewById(R.id.tv_description);
             imgAddToCard =  itemView.findViewById(R.id.img_add_to_card);
+            layoutItem = itemView.findViewById(R.id.layout_item_product_list1);
         }
     }
 }

@@ -1,26 +1,22 @@
-package com.example.addtocard1;
+package com.example.addtocard1.Adapter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.bumptech.glide.Glide;
-import com.example.addtocard1.Fragment.DetailProductFragment;
+import com.example.addtocard1.MainActivity;
+import com.example.addtocard1.Product;
+import com.example.addtocard1.R;
 import com.example.addtocard1.my_Interface.IClickProuductListener;
-import com.google.android.gms.maps.SupportMapFragment;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -38,7 +34,8 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.Product
     }
     private IClickProuductListener iClickProuductListener;
 
-    public  void setData(List<Product> list , IClickAddToCartListener listener, AddtoCartProduct addToCartListener,IClickProuductListener iClickProuductListener){
+    public  void setData(List<Product> list , IClickAddToCartListener listener, AddtoCartProduct addToCartListener,
+                         IClickProuductListener iClickProuductListener){
         this.mListProduct = list;
         this.iClickAddToCartListener = listener;
         this.addToCartListener=addToCartListener;
@@ -66,6 +63,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.Product
         if(product == null){
 //            return ;
             notifyDataSetChanged();
+            return;
         }
 
         Glide.with(context).load(product.imgResource).into(holder.imProduct);

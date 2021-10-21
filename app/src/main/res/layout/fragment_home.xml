@@ -11,7 +11,8 @@
     android:id="@+id/fragment_home">
       <androidx.core.widget.NestedScrollView
           android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="55dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,34 +74,47 @@
                             android:src="@drawable/banner"
                             android:scaleType="centerCrop"
                             ></ImageView>
-
-
                     </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loại sản phẩm"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="5dp"/>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/rcv_list_categories"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+
+                   </androidx.recyclerview.widget.RecyclerView>
+               </LinearLayout>
                   <TextView
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:text="Sản Phẩm Mới"
                       android:textColor="@color/black"
                       android:textSize="20sp"
+                      android:layout_marginTop="6dp"
+                      android:layout_marginBottom="4dp"
                       android:layout_marginStart="5dp">
 
                   </TextView>
-                  <androidx.recyclerview.widget.RecyclerView
-                      android:id="@+id/rcv_product1"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      ></androidx.recyclerview.widget.RecyclerView>
+
                   <androidx.recyclerview.widget.RecyclerView
                       android:id="@+id/rcv_product"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_product1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ></androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
-
       </androidx.core.widget.NestedScrollView>
-
-
-
-
-
 </FrameLayout>

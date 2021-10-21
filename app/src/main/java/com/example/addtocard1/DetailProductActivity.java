@@ -1,5 +1,6 @@
 package com.example.addtocard1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -17,6 +18,10 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.bumptech.glide.Glide;
 import com.example.addtocard1.Adapter.Photo;
 import com.example.addtocard1.Adapter.PhotoSildeAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -30,10 +35,14 @@ public class DetailProductActivity extends AppCompatActivity {
     ImageView imageView,imgBack,imgPlus,imgMinus;
     EditText edtQuantity;
     Product product;
+    public String USER_ID ;
+    MainActivity mainActivity;
     PhotoSildeAdapter photoSildeAdapter;
     ViewPager viewPager;
     CircleIndicator circleIndicator;
-
+    String Categories;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRefCart = database.getReference("cart");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +51,9 @@ public class DetailProductActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Intent i = getIntent();
         product = (Product) i.getSerializableExtra("obj_product");
+        USER_ID = (String) i.getSerializableExtra("USER_ID");
+    System.out.println("ID là"+USER_ID);
+        Categories=product.getCategories();
             getSlide();
             getView();
             setView();
@@ -65,7 +77,7 @@ public class DetailProductActivity extends AppCompatActivity {
         for (int j = 0; j < product.getListImgResource().size(); j++) {
             list.add(new Photo(product.getListImgResource().get(j)))  ;
         }
-        System.out.println(list);
+
         return list ;
     }
     @SuppressLint("WrongViewCast")
@@ -109,6 +121,7 @@ public class DetailProductActivity extends AppCompatActivity {
         imgMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String qt = edtQuantity.getText().toString();
                 int quantity = Integer.parseInt(qt);
                 if(quantity!=0){
@@ -123,10 +136,24 @@ public class DetailProductActivity extends AppCompatActivity {
 
     }
     private void setImgAddtocartOnclick(){
+
         imgAddtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailProductActivity.this,"Thử chức năng click",Toast.LENGTH_SHORT).show();
+                String quantity = edtQuantity.getText().toString().trim();
+                int soluong = Integer.parseInt(quantity);
+                 if(soluong==0){
+                     Toast.makeText(DetailProductActivity.this,"Số lượng không phù hợp", Toast.LENGTH_LONG).show();
+                 }else {
+
+                     product.setQuantity(soluong);
+                     myRefCart.child(USER_ID).child(product.idProduct).setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
+                         @Override
+                         public void onComplete(@NonNull Task<Void> task) {
+                             Toast.makeText(DetailProductActivity.this,"Thêm thành công", Toast.LENGTH_LONG).show();
+                         }
+                     });
+                 }
             }
         });
     }
@@ -142,6 +169,7 @@ public class DetailProductActivity extends AppCompatActivity {
     }
 
     private void BackOnclick(){
+
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,5 +178,6 @@ public class DetailProductActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 }

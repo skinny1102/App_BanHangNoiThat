@@ -39,14 +39,25 @@
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/drawable/texthint_style.xml" value="0.2703125" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/drawable/textlineborder_top.xml" value="0.2703125" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/drawable/textlines.xml" value="0.2703125" />
-        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_detail_product.xml" value="0.4" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_address.xml" value="0.25416666666666665" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_detail_product.xml" value="0.1" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_don_hang.xml" value="0.2" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_main.xml" value="0.2171875" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_signin.xml" value="0.1" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/fragment_card.xml" value="0.2" />
-        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/fragment_home.xml" value="0.15416666666666667" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/fragment_detailproduct.xml" value="0.13385416666666666" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/fragment_home.xml" value="0.152" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/fragment_notice.xml" value="0.176" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/item_address.xml" value="0.25416666666666665" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/item_dondathang_product.xml" value="0.25416666666666665" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/item_list_categories.xml" value="0.264" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/item_listproductcart.xml" value="0.264" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/item_product.xml" value="0.10833333333333334" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/item_product1.xml" value="0.25416666666666665" />
         <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/itemimgproduct_slide.xml" value="0.19895833333333332" />
+        <entry key="..\:/decor/App_BanHangNoiThat/app/src/main/res/layout/list_categories.xml" value="0.13333333333333333" />
       </map>
     </option>
   </component>

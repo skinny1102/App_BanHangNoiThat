@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Home</string>
+    <string name="app_name">DECOR</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="product_fragment">ProductFragment</string>
     <string name="card_fragment">CardFragment</string>
@@ -7,7 +7,7 @@
 
     <string name="tab_1">Product</string>
     <string name="tab_2">Card</string>
-    <string name="tab_3">Notice</string>
+    <string name="tab_3">User</string>
     <string name="titilehome"> Showroom trực tuyến và mua sắm</string>
     <string name="hintSearch"> <font size="15">Tìm kiếm sản phẩm</font></string>
     <string name="edittext_hint"><font size="16">1</font></string>
