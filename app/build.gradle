@@ -5,6 +5,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        my_config {
+            storeFile file('C:\\Users\\TGooD\\Desktop\\Keystore\\test_keystore.jks')
+            storePassword 'thang123'
+            keyAlias 'AppDecor'
+            keyPassword 'thang123'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -13,7 +21,6 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -21,6 +28,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.my_config
         }
     }
     compileOptions {
@@ -53,6 +61,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.cardview:cardview:1.0.0"

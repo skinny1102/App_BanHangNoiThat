@@ -18,6 +18,8 @@ public class AddressAdapter extends BaseAdapter {
     int layout;
     List<String> list;
     int selectedPosition = -1;
+    public String strAddress;
+
 
     public AddressAdapter(Context context, int layout, List<String> list) {
         this.context = context;
@@ -55,9 +57,12 @@ public class AddressAdapter extends BaseAdapter {
             view.setTag(viewHolder);
         }else {
             viewHolder= (ViewHolder) view.getTag();
+
         }
         if(selectedPosition==i){
             viewHolder.radioButton.setChecked(true);
+            setStrAddress(list.get(i));
+
         }else{
             viewHolder.radioButton.setChecked(false);
         }
@@ -71,9 +76,14 @@ public class AddressAdapter extends BaseAdapter {
                 notifyDataSetChanged();
             }
         });
-
-
         return view;
+    }
 
+    public String getStrAddress() {
+        return strAddress;
+    }
+
+    public void setStrAddress(String strAddress) {
+        this.strAddress = strAddress;
     }
 }

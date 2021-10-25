@@ -11,7 +11,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.addtocard1.Adapter.AddressAdapter;
 import com.example.addtocard1.Adapter.ProductCartAdapter;
@@ -31,9 +34,12 @@ public class DonHangActivity extends AppCompatActivity {
     private String USER_ID;
     ProductDonDatHangAdapter adapter;
     private List<Product> list;
-    TextView tvTongtien,chosseAdress;
+    TextView tvTongtien,chosseAdress,tvDatHang;
     ImageView imgBack;
     int Tongtien;
+    RadioGroup radioGroup;
+    RadioButton radioButton,radioButton1,radioButton2;
+    String hinhthucthanhtoan,address;
     ListView listViewAddress;
     AddressAdapter adapterAddress;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -51,6 +57,7 @@ public class DonHangActivity extends AppCompatActivity {
         BackOnclick();
         getviewAdress();
         chosseAdress();
+        Dathang();
     }
 
     private void getviewProductDatHang() {
@@ -95,6 +102,7 @@ public class DonHangActivity extends AppCompatActivity {
         listViewAddress = findViewById(R.id.lv_adress);
         adapterAddress = new AddressAdapter(DonHangActivity.this, R.layout.item_address,getListAddress());
         listViewAddress.setAdapter(adapterAddress);
+
     }
 
     private List<String> getListAddress() {
@@ -102,10 +110,16 @@ public class DonHangActivity extends AppCompatActivity {
        refAddress.child(USER_ID).child("address").addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                   String address =  snapshot.getValue().toString();
-                   listAdress.add(address);
-                   adapterAddress.notifyDataSetChanged();
 
+               for (DataSnapshot postSnapshot : snapshot.getChildren()){
+                   if(postSnapshot.getValue()==null){
+                       Toast.makeText(DonHangActivity.this,"Chưa có địa chỉ",Toast.LENGTH_LONG).show();
+                   }else {
+                       String address =  postSnapshot.getValue().toString();
+                       listAdress.add(address);
+                       adapterAddress.notifyDataSetChanged();
+                   }
+               }
            }
 
            @Override
@@ -113,8 +127,38 @@ public class DonHangActivity extends AppCompatActivity {
 
            }
        });
-    return listAdress;
+        return listAdress;
     }
+    private void Dathang(){
+        tvDatHang = findViewById(R.id.tv_dathang);
+        tvDatHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getAddress();
+                getthanhtoan();
+                Toast.makeText(DonHangActivity.this,"Đã lấy được địa chỉ và hình thức thanh toán test nút xẽm có click được hay không",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private void getthanhtoan(){
+        radioGroup = findViewById(R.id.gr_radiobutton);
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioId);
+        if(radioButton==null){
+            Toast.makeText(DonHangActivity.this,"Hãy chọn hình thức thanh toán",Toast.LENGTH_LONG).show();
+            return;
+        }
+        else{
+            hinhthucthanhtoan = radioButton.getText().toString().trim();
+        }
+    }
+    private void getAddress(){
+        if(adapterAddress.getStrAddress()==null){
+            Toast.makeText(DonHangActivity.this,"Hãy chọn địa chỉ",Toast.LENGTH_LONG).show();
+            return;
+        }else {
+            address = adapterAddress.getStrAddress().toString().trim();
+        }
 
-
+    }
 }

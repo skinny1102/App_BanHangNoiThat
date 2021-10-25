@@ -1,30 +1,44 @@
 package com.example.addtocard1;
 
 public class User {
-    String uID ;
-    String name;
+
+    String imgResource;
+    String fullName;
+    String phoneNumber;
     String email;
 
-    public User(String uID, String name, String email) {
-        this.uID = uID;
-        this.name = name;
+    public User(String imgResource, String fullName, String phoneNumber, String email) {
+        this.imgResource = imgResource;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
     }
+    public User(){
 
-    public String getuID() {
-        return uID;
     }
 
-    public void setuID(String uID) {
-        this.uID = uID;
+    public String getImgResource() {
+        return imgResource;
     }
 
-    public String getName() {
-        return name;
+    public void setImgResource(String imgResource) {
+        this.imgResource = imgResource;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

@@ -5,23 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddressActivity"
-    android:orientation="vertical"
-    android:gravity="center">
-    <EditText
-        android:layout_margin="10dp"
-        android:id="@+id/edt_address"
+    android:orientation="vertical">
+    <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Địa chỉ muốn thêm"
-        >
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="19dp">
 
-    </EditText>
-    <Button
-        android:id="@+id/btn_addAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thêm địa chỉ"
-        ></Button>
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:id="@+id/img_back"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Địa chỉ"></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:orientation="vertical">
+        <TextView
+            android:paddingLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ của bạn"
+            >
+        </TextView>
+        <ListView
+            android:id="@+id/lv_addadress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/edt_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ muốn thêm"
+            >
+
+        </EditText>
+        <Button
+            android:id="@+id/btn_addAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm địa chỉ"
+            ></Button>
+
+    </LinearLayout>
+
 
 
 

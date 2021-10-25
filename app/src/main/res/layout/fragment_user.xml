@@ -48,6 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -61,12 +63,36 @@
                         android:textSize="18sp"
                         android:paddingLeft="25dp"
                         android:layout_marginTop="15dp"></TextView>
+                    <TextView
+                        android:gravity="right"
+                        android:layout_width="0dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:textStyle="italic"
+                        android:textColor="@color/color_tab_2"
+                        android:textSize="15sp"
+                        android:paddingRight="25dp"
+                        android:layout_marginTop="15dp"></TextView>
                 </LinearLayout>
 <!--                LAYOUT TÀI KHOẢN-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" android:paddingLeft="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_profile"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/defauluser">
+
+                        </de.hdodenhof.circleimageview.CircleImageView>
+                    </LinearLayout>
                     <!--                //Tên-->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -81,10 +107,33 @@
                             android:paddingLeft="25dp"
                             android:layout_marginTop="15dp"></TextView>
                         <TextView
+                            android:id="@+id/tv_username"
                             android:layout_width="0dp"
                             android:layout_weight="7"
                             android:layout_height="wrap_content"
                             android:text="Nguyễn Hữu Thắng"
+                            android:textSize="18sp"
+                            android:paddingLeft="7dp"
+                            android:layout_marginTop="15dp"></TextView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:text="SĐT : "
+                            android:textSize="18sp"
+                            android:paddingLeft="25dp"
+                            android:layout_marginTop="15dp"></TextView>
+                        <TextView
+                            android:id="@+id/tv_phoneNumber"
+                            android:layout_width="0dp"
+                            android:layout_weight="7"
+                            android:layout_height="wrap_content"
+                            android:text="0974997205"
                             android:textSize="18sp"
                             android:paddingLeft="7dp"
                             android:layout_marginTop="15dp"></TextView>
@@ -103,6 +152,7 @@
                             android:paddingLeft="25dp"
                             android:layout_marginTop="15dp"></TextView>
                         <TextView
+                            android:id="@+id/tv_email"
                             android:layout_width="0dp"
                             android:layout_weight="7"
                             android:layout_height="wrap_content"
@@ -111,6 +161,7 @@
                             android:paddingLeft="7dp"
                             android:layout_marginTop="15dp"></TextView>
                     </LinearLayout>
+
                 </LinearLayout>
 
 

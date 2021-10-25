@@ -18,10 +18,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SigninActivity extends AppCompatActivity {
-    private LinearLayout layoutSignup;
+    private LinearLayout layoutSignup,layoutLoginSDT;
     EditText edtEmail , edtPassword;
     Button btnLogin;
     ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class SigninActivity extends AppCompatActivity {
     private void  initUI(){
         progressDialog = new ProgressDialog(this);
         layoutSignup = findViewById(R.id.layout_sign_up);
+        layoutLoginSDT =findViewById(R.id.loginwithsdt);
         edtEmail = findViewById(R.id.edt_email);
         edtPassword = findViewById(R.id.edt_password);
         btnLogin = findViewById(R.id.btnLogin);
@@ -53,6 +55,13 @@ public class SigninActivity extends AppCompatActivity {
                 OnclickLogin();
             }
         });
+        layoutLoginSDT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(SigninActivity.this,VerifyPhoneNumberActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void OnclickLogin() {
@@ -65,6 +74,7 @@ public class SigninActivity extends AppCompatActivity {
         /////// Check Email và password nhé
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         progressDialog.show();
+        /// Check đăng nhập
         firebaseAuth.signInWithEmailAndPassword(Email, PassWord)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

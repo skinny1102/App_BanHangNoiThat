@@ -90,7 +90,7 @@
                             ></TextView>
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp">
+                            android:layout_height="90dp">
 
                                 <ListView
                                     android:id="@+id/lv_adress"
@@ -134,15 +134,19 @@
                             android:layout_height="100dp"
                             android:layout_marginEnd="15dp">
                             <RadioGroup
+                                android:id="@+id/gr_radiobutton"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <RadioButton
+                                    android:id="@+id/tructiep"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Thanh toán trục tiếp">
+                                    android:text="Thanh toán trực tiếp"
+                                    >
 
                                 </RadioButton>
                                 <RadioButton
+                                    android:id="@+id/nganhang"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Chuyển khoản qua ngân hàng">
@@ -201,7 +205,7 @@
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/redCart">
                     <TextView
-                        android:id="@+id/img_add_to_cart"
+                        android:id="@+id/tv_dathang"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Đặt hàng "
