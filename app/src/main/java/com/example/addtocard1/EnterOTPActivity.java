@@ -44,6 +44,7 @@ public class EnterOTPActivity extends AppCompatActivity {
         btnEnterOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String OTP = edtOtp.getText().toString().trim();
                 onclickSendOTP(OTP);
             }
@@ -51,6 +52,7 @@ public class EnterOTPActivity extends AppCompatActivity {
         sendOTPagain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(EnterOTPActivity.this,"Đã Click",Toast.LENGTH_LONG).show();
                 sendotpagain();
             }
         });
@@ -79,7 +81,6 @@ public class EnterOTPActivity extends AppCompatActivity {
                                 super.onCodeSent(verificationID, forceResendingToken);
                                 mVerificationID = verificationID;
                                 mforceResendingToken = forceResendingToken;
-
                             }
                         })          // OnVerificationStateChangedCallbacks
                         .build();
@@ -128,6 +129,7 @@ public class EnterOTPActivity extends AppCompatActivity {
     }
     private void gotoMainActivity(String phoneNumber) {
         Intent intent = new Intent(EnterOTPActivity.this,MainActivity.class);
+        intent.putExtra("phone_number",phoneNumber);
         startActivity(intent);
     }
 }

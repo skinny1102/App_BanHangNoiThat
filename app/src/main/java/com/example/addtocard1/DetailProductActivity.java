@@ -7,17 +7,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
-import com.bumptech.glide.Glide;
 import com.example.addtocard1.Adapter.Photo;
 import com.example.addtocard1.Adapter.PhotoSildeAdapter;
+import com.example.addtocard1.Doituong.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import me.relex.circleindicator.CircleIndicator;
 

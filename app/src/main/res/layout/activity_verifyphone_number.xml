@@ -5,22 +5,97 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".VerifyPhoneNumberActivity">
-
-    <EditText
-        android:id="@+id/edit_phone_number"
+    tools:context=".VerifyPhoneNumberActivity"
+    android:gravity="center">
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="25sp"
         android:textColor="@color/black"
-        android:hint="Enter your PhoneNumber"
-        ></EditText>
+        android:textStyle="bold"
+        android:text="Đăng nhập với SMS"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        ></TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+84"
+            android:textSize="18dp"
+            android:layout_marginEnd="10dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/edit_phone_number"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="Số điện thoại"
+            ></EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_enterotp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mã OPT"
+            android:textSize="18dp"
+            android:layout_marginEnd="10dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/edt_otp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="Mã"
+            android:layout_marginEnd="10dp"
+            ></EditText>
+
+        <TextView
+            android:id="@+id/tv_sendagain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gửi lại mã"
+            android:textColor="@color/color_tab_2"></TextView>
+    </LinearLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_enter_phone_number"
         android:textColor="@color/white"
-        android:text="xác nhận"
+        android:text="Tiếp theo"
         android:layout_margin="10dp"
         ></Button>
+    <Button
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_xacnhanma"
+        android:textColor="@color/white"
+        android:text="Xác nhận"
+        android:layout_margin="10dp"
+        ></Button>
+    <TextView
+        android:id="@+id/tvlogin_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng nhập bằng email"
+        android:textColor="@color/color_tab_2"></TextView>
 
 </LinearLayout>

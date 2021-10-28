@@ -1,4 +1,4 @@
-package com.example.addtocard1;
+package com.example.addtocard1.Doituong;
 
 import java.io.Serializable;
 import java.util.List;

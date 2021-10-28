@@ -8,6 +8,7 @@
 
     >
 
+
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager
         android:id="@+id/AHBottomNavigationViewPager"
         android:layout_width="match_parent"

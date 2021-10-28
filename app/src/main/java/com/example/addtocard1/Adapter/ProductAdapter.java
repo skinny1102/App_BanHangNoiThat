@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.bumptech.glide.Glide;
 import com.example.addtocard1.MainActivity;
-import com.example.addtocard1.Product;
+import com.example.addtocard1.Doituong.Product;
 import com.example.addtocard1.R;
 import com.example.addtocard1.my_Interface.IClickProuductListener;
 

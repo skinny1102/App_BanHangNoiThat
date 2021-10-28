@@ -2,56 +2,39 @@ package com.example.addtocard1.Fragment;
 
 import static java.lang.String.valueOf;
 
-import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CheckedTextView;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
-import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 import com.example.addtocard1.Adapter.ProductCartAdapter;
-import com.example.addtocard1.DetailProductActivity;
 import com.example.addtocard1.DonHangActivity;
 import com.example.addtocard1.MainActivity;
-import com.example.addtocard1.Product;
+import com.example.addtocard1.Doituong.Product;
 import com.example.addtocard1.R;
-import com.example.addtocard1.UserAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class CardFragment extends Fragment {
@@ -176,13 +159,18 @@ public class CardFragment extends Fragment {
         @Override
         public void onClick(View view) {
             List<String> prlistdelte = productCartAdapter.getListid();
-            for (String id : prlistdelte) {
-                myRefCart.child(USER_ID).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(mainActivity,"Xóa thành công",Toast.LENGTH_SHORT).show();
-                    }
-                });
+            if (prlistdelte.size()==0){
+                Toast.makeText(mainActivity,"Bạn chưa chọn sản phẩm để xóa",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                for (String id : prlistdelte) {
+                    myRefCart.child(USER_ID).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(mainActivity,"Xóa thành công",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
             productCartAdapter.notifyDataSetChanged();
         }

@@ -1,4 +1,4 @@
-package com.example.addtocard1;
+package com.example.addtocard1.Doituong;
 
 public class User {
 
@@ -6,15 +6,25 @@ public class User {
     String fullName;
     String phoneNumber;
     String email;
+    String address;
 
-    public User(String imgResource, String fullName, String phoneNumber, String email) {
+    public User(String imgResource, String fullName, String phoneNumber, String email,String address) {
         this.imgResource = imgResource;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.address=address;
     }
     public User(){
 
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getImgResource() {

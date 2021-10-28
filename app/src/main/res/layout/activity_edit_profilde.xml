@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.HomeFragment"
-    android:background="@color/white"
-    >
-
-    <!-- TODO: Update blank fragment layout -->
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".EditProfildeActivity" >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
         <LinearLayout
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:orientation="horizontal"
             android:paddingStart="20dp"
             android:paddingTop="19dp">
@@ -28,6 +26,7 @@
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"
                 android:id="@+id/img_back"
                 >
+
             </ImageView>
             <TextView
                 android:layout_width="match_parent"
@@ -35,10 +34,8 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Thông tin"></TextView>
+                android:text="Sửa thông tin"></TextView>
         </LinearLayout>
-
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -48,6 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -57,25 +56,13 @@
                         android:layout_weight="8"
                         android:layout_height="wrap_content"
                         android:text="Tài khoản"
-                        android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:paddingLeft="25dp"
                         android:layout_marginTop="15dp"></TextView>
-                    <TextView
-                        android:id="@+id/edit_profile"
-                        android:gravity="right"
-                        android:layout_width="0dp"
-                        android:layout_weight="8"
-                        android:layout_height="wrap_content"
-                        android:text="Edit"
-                        android:textStyle="italic"
-                        android:textColor="@color/color_tab_2"
-                        android:textSize="15sp"
-                        android:paddingRight="25dp"
-                        android:layout_marginTop="15dp"></TextView>
+
                 </LinearLayout>
-<!--                LAYOUT TÀI KHOẢN-->
+                <!--                LAYOUT TÀI KHOẢN-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,15 +93,15 @@
                             android:textSize="18sp"
                             android:paddingLeft="25dp"
                             android:layout_marginTop="15dp"></TextView>
-                        <TextView
-                            android:id="@+id/tv_username"
+                        <EditText
+                            android:id="@+id/edt_username"
                             android:layout_width="0dp"
                             android:layout_weight="7"
                             android:layout_height="wrap_content"
-                            android:text="Nguyễn Hữu Thắng"
+                            android:hint="Tên của bạn"
                             android:textSize="18sp"
                             android:paddingLeft="7dp"
-                            android:layout_marginTop="15dp"></TextView>
+                            android:layout_marginTop="15dp"></EditText>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -128,15 +115,15 @@
                             android:textSize="18sp"
                             android:paddingLeft="25dp"
                             android:layout_marginTop="15dp"></TextView>
-                        <TextView
-                            android:id="@+id/tv_phoneNumber"
+                        <EditText
+                            android:id="@+id/edit_phone_number"
                             android:layout_width="0dp"
                             android:layout_weight="7"
                             android:layout_height="wrap_content"
-                            android:text="0974997205"
+                            android:hint="Số điện thoại của bạn"
                             android:textSize="18sp"
                             android:paddingLeft="7dp"
-                            android:layout_marginTop="15dp"></TextView>
+                            android:layout_marginTop="15dp"></EditText>
                     </LinearLayout>
                     <!--            EMAIL-->
                     <LinearLayout
@@ -151,15 +138,52 @@
                             android:textSize="18sp"
                             android:paddingLeft="25dp"
                             android:layout_marginTop="15dp"></TextView>
-                        <TextView
-                            android:id="@+id/tv_email"
+                        <EditText
+                            android:id="@+id/edt_email"
                             android:layout_width="0dp"
                             android:layout_weight="7"
                             android:layout_height="wrap_content"
-                            android:text="huuthang.nguyen.986@gmil.com"
+                            android:hint="Email của bạn"
                             android:textSize="18sp"
                             android:paddingLeft="7dp"
+                            android:layout_marginTop="15dp"></EditText>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:text="Địa chỉ: "
+                            android:textSize="18sp"
+                            android:paddingLeft="25dp"
                             android:layout_marginTop="15dp"></TextView>
+                        <EditText
+                            android:id="@+id/edt_address"
+                            android:layout_width="0dp"
+                            android:layout_weight="7"
+                            android:layout_height="wrap_content"
+                            android:hint="Địa chỉ của bạn"
+                            android:textSize="18sp"
+                            android:paddingLeft="7dp"
+                            android:layout_marginTop="15dp"></EditText>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                       <Button
+                           android:id="@+id/btn_update"
+                           android:layout_gravity="center"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Lưu"></Button>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -169,63 +193,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:orientation="horizontal"
-                    android:background="@color/bggray"
-                    android:layout_marginTop="10dp"
-
-                    >
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_weight="8"
-                        android:layout_height="wrap_content"
-                        android:text="Đơn Hàng"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:paddingLeft="25dp"
-                        android:layout_marginTop="17dp"></TextView>
-                </LinearLayout>
+                    android:orientation="horizontal"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@color/bggray"
-                    android:paddingBottom="20dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-<!--                        <TextView-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="Tất cả Đơn Hàng của bạn"-->
-<!--                            android:textSize="18sp"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:paddingLeft="25dp"-->
-<!--                            android:paddingBottom="5dp"-->
-
-<!--                            android:layout_marginTop="15dp">-->
-<!--                        </TextView>-->
-                        <ListView
-                            android:id="@+id/lvdonhang"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"></ListView>
-                    </LinearLayout>
-
-                </LinearLayout>
-                <Button android:id="@+id/btn_logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Đăng xuất"></Button>
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
 
-
-
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

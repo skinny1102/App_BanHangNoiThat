@@ -1,21 +1,18 @@
 package com.example.addtocard1.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.example.addtocard1.MainActivity;
-import com.example.addtocard1.Product;
+import com.example.addtocard1.Doituong.Product;
 import com.example.addtocard1.R;
-import com.example.addtocard1.my_Interface.interfaceProduct;
 
 public class DetailProductFragment extends Fragment {
     public View view;

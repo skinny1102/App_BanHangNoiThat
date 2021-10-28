@@ -3,32 +3,27 @@ package com.example.addtocard1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
-import com.example.addtocard1.Fragment.DetailProductFragment;
+import com.example.addtocard1.Doituong.User;
 import com.example.addtocard1.Fragment.HomeFragment;
-import com.example.addtocard1.my_Interface.interfaceProduct;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import kotlin.reflect.TypeOfKt;
 
 public class MainActivity extends AppCompatActivity  {
     private AHBottomNavigation ahBottomNavigation;
@@ -37,6 +32,7 @@ public class MainActivity extends AppCompatActivity  {
     View viewEndAnimation;
     ImageView viewAnimation;
     User g_User;
+    String phoneNumber;
     public String G_uid;
 
     public String getG_uid() {
@@ -51,6 +47,7 @@ public class MainActivity extends AppCompatActivity  {
     HomeFragment homeFragment;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefCart = database.getReference("cart");
+    DatabaseReference myRefProfile = database.getReference("profile");
    private boolean flag = false;
 
 
@@ -68,6 +65,7 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         getUserInformation();
+
 
         viewEndAnimation = findViewById(R.id.view_end_animation);
         viewAnimation = findViewById(R.id.view_animation);
@@ -157,7 +155,20 @@ public class MainActivity extends AppCompatActivity  {
                 // UID specific to the provider
                 String uid = user.getUid();
                 setG_uid(uid);
+                SetPhoneNumber(uid);
+
         }
+    }
+    public void SetPhoneNumber(String uid){
+        Intent i = getIntent();
+        phoneNumber = i.getStringExtra("phone_number");
+        System.out.println(phoneNumber);
+        if(phoneNumber!=null){
+            myRefProfile.child(uid).child("phoneNumber").setValue(phoneNumber);
+        }else {
+            return;
+        }
+
     }
 
     @Override
@@ -165,4 +176,5 @@ public class MainActivity extends AppCompatActivity  {
         super.onSaveInstanceState(outState);
         //// Chưa sử lý out sate
     }
+
 }

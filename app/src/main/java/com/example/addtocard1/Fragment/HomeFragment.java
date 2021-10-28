@@ -15,17 +15,15 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.example.addtocard1.Adapter.Categories;
 import com.example.addtocard1.Adapter.CategoriesAdapter;
-import com.example.addtocard1.Adapter.CategoriesAdapter1;
 import com.example.addtocard1.Animation.AnimationUtil;
 
 import com.example.addtocard1.DetailProductActivity;
 import com.example.addtocard1.MainActivity;
-import com.example.addtocard1.Product;
+import com.example.addtocard1.Doituong.Product;
 import com.example.addtocard1.Adapter.ProductAdapter;
 import com.example.addtocard1.Adapter.ProductAdapter1;
 import com.example.addtocard1.R;
