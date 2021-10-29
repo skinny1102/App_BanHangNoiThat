@@ -5,6 +5,7 @@ import com.example.addtocard1.Doituong.Product;
 import java.util.List;
 
 public class DonHang {
+    private String maDonhang;
     private String userId;
     private String fullName;
     private String sdt;
@@ -14,7 +15,8 @@ public class DonHang {
     private boolean trangThai;
     private int tongTien;
 
-    public DonHang(String userId, String fullName, String sdt, String address, String dateDatHang, List<Product> listProductDat, boolean trangThai, int tongTien) {
+    public DonHang(String maDonhang,String userId, String fullName, String sdt, String address, String dateDatHang, List<Product> listProductDat, boolean trangThai, int tongTien) {
+        this.maDonhang = maDonhang;
         this.userId = userId;
         this.fullName = fullName;
         this.sdt = sdt;
@@ -23,6 +25,17 @@ public class DonHang {
         this.listProductDat = listProductDat;
         this.trangThai = trangThai;
         this.tongTien = tongTien;
+    }
+    public DonHang(){
+
+    }
+
+    public String getMaDonhang() {
+        return maDonhang;
+    }
+
+    public void setMaDonhang(String maDonhang) {
+        this.maDonhang = maDonhang;
     }
 
     public String getUserId() {

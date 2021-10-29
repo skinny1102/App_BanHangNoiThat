@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.example.addtocard1.AllDonHangActivity;
 import com.example.addtocard1.EditProfildeActivity;
 import com.example.addtocard1.MainActivity;
 import com.example.addtocard1.R;
@@ -81,6 +83,14 @@ public class UserFragment extends Fragment {
         lv = view.findViewById(R.id.lvdonhang);
         adapter = new ArrayAdapter<>(mainActivity, android.R.layout.simple_list_item_1,getlist());
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(mainActivity, AllDonHangActivity.class);
+                    intent.putExtra("USER_ID",USER_ID);
+                    startActivity(intent);
+            }
+        });
     }
 
     private List<String> getlist() {

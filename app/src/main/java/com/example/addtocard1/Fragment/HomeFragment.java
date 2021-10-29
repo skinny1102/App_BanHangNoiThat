@@ -70,6 +70,7 @@ public class HomeFragment extends Fragment {
         return mView;
     }
     private void getRcv1(){
+
         rcvProduct1 = mView.findViewById(R.id.rcv_product1);
         productAdapter1 = new ProductAdapter1(mainActivity);
         list1 = new ArrayList<>();

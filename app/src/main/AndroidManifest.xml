@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Addtocard1">
         <activity
+            android:name=".ChitietDonhangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AllDonHangActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProfildeActivity"
             android:exported="true" />
         <activity

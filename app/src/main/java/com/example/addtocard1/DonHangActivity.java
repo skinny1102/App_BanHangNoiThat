@@ -261,7 +261,7 @@ public class DonHangActivity extends AppCompatActivity {
     }
     private void Dathang() {
 
-        DonHang donHang = new DonHang(USER_ID,fullName,Sdt,address,dateTime,list,false,Tongtien);
+        DonHang donHang = new DonHang("none",USER_ID,fullName,Sdt,address,dateTime,list,false,Tongtien);
         refDonhang.push().setValue(donHang).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

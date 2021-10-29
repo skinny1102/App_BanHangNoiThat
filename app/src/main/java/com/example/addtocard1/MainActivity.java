@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+//import com.huawei.agconnect.appmessaging.AGConnectAppMessaging;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -65,8 +66,10 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         getUserInformation();
-
-
+//        AGConnectAppMessaging.getInstance().setFetchMessageEnable( true );
+//
+//        AGConnectAppMessaging appMessaging = AGConnectAppMessaging.getInstance();
+//        appMessaging.setDisplayEnable(false);
         viewEndAnimation = findViewById(R.id.view_end_animation);
         viewAnimation = findViewById(R.id.view_animation);
 
