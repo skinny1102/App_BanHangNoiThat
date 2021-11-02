@@ -2,12 +2,15 @@ package com.example.addtocard1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,15 +18,23 @@ import android.widget.Toast;
 
 import com.example.addtocard1.Adapter.Photo;
 import com.example.addtocard1.Adapter.PhotoSildeAdapter;
+import com.example.addtocard1.Adapter.ProductAdapter;
+import com.example.addtocard1.Adapter.ProductlienquanAdapter;
+import com.example.addtocard1.Animation.AnimationUtil;
 import com.example.addtocard1.Doituong.Product;
+import com.example.addtocard1.my_Interface.IClickProuductListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -32,14 +43,19 @@ public class DetailProductActivity extends AppCompatActivity {
     ImageView imageView,imgBack,imgPlus,imgMinus;
     EditText edtQuantity;
     Product product;
+    RecyclerView recyclerView;
     public String USER_ID ;
     MainActivity mainActivity;
     PhotoSildeAdapter photoSildeAdapter;
+    private ProductlienquanAdapter adapter;
+    private List<Product> listpr;
     ViewPager viewPager;
     CircleIndicator circleIndicator;
     String Categories;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefCart = database.getReference("cart");
+    DatabaseReference myRefProduct= database.getReference("product");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +73,9 @@ public class DetailProductActivity extends AppCompatActivity {
             setImgAddtocartOnclick();
             setClickQuantity();
             BackOnclick();
+            getsplq();
     }
+
 
     private void getSlide() {
         viewPager= findViewById(R.id.viewpager);
@@ -89,7 +107,6 @@ public class DetailProductActivity extends AppCompatActivity {
         imgMinus=findViewById(R.id.img_minus);
         edtQuantity=findViewById(R.id.edit_quantity);
         imgAddtocart =findViewById(R.id.img_add_to_cart);
-
 
     }
     private void setView(){
@@ -170,11 +187,61 @@ public class DetailProductActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(DetailProductActivity.this, MainActivity.class);
-                DetailProductActivity.this.finish(); //Use your current activity
-                startActivity(i);
+//                Intent i = new Intent(DetailProductActivity.this, MainActivity.class);
+//                DetailProductActivity.this.finish(); //Use your current activity
+//                startActivity(i);
+                finish();
             }
         });
+
+    }
+    private void getsplq() {
+        recyclerView = findViewById(R.id.rcvpr);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new ProductlienquanAdapter(this);
+        listpr = new ArrayList<>();
+        myRefProduct.orderByChild("categories").equalTo(product.getCategories()).limitToLast(3).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(listpr.size()>0){
+                    listpr.clear();
+                }
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Product productObj = postSnapshot.getValue(Product.class);
+                   if (productObj.getIdProduct().trim() != product.getIdProduct().trim()){
+                       System.out.println("nó vào đây");
+                       listpr.add(new Product(productObj.getIdProduct(),
+                               productObj.getNameProduct(),
+                               productObj.getDescriptionProduct(),
+                               productObj.getPriceProduct(),
+                               productObj.getQuantity(),
+                               productObj.getImgResource(),
+                               productObj.getCategories(),
+                               productObj.getListImgResource()));
+                       adapter.setData(listpr);
+                   }else {
+                       System.out.println("nó vào else");
+                       return;
+                   }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        recyclerView.setAdapter(adapter);
+    }
+    public void showDetailProduct(Product product){
+        Toast.makeText(DetailProductActivity.this,"Chưa cập nhật chức năng này ", Toast.LENGTH_LONG).show();
+//        Intent myIntent = new Intent(mainActivity, DetailProductActivity.class);
+//        myIntent.putExtra("obj_product",product);
+//        myIntent.putExtra("USER_ID",mainActivity.getG_uid());
+//        mainActivity.startActivity(myIntent);
+
 
     }
 }

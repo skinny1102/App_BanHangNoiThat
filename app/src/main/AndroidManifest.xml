@@ -3,6 +3,7 @@
     package="com.example.addtocard1">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Addtocard1">
+        <activity
+            android:name=".CategoriesProduct"
+            android:exported="false" />
         <activity
             android:name=".ChitietDonhangActivity"
             android:exported="false" />

@@ -37,6 +37,7 @@
                 android:textColor="@color/black"
                 android:text="Sản Phẩm"></TextView>
         </LinearLayout>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -173,6 +174,23 @@
                             android:text="Mô tả"
                             tools:ignore="DuplicateIds"></TextView>
                     </LinearLayout>
+                    <TextView
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15dp"
+                        android:gravity="left"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="Sản phẩm liên quan"></TextView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcvpr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </androidx.recyclerview.widget.RecyclerView>
                 </LinearLayout>
 
 

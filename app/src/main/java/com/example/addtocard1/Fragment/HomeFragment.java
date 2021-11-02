@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
         list1 = new ArrayList<>();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mainActivity,3);
         rcvProduct1.setLayoutManager(gridLayoutManager);
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.limitToLast(3).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(list1.size()>0){
@@ -145,7 +145,7 @@ public class HomeFragment extends Fragment {
         rcvProduct.setLayoutManager(linearLayoutManager);
         productAdapter = new ProductAdapter(mainActivity);
         list = new ArrayList<>();
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.limitToLast(4).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(list.size()>0){
@@ -219,16 +219,13 @@ public class HomeFragment extends Fragment {
     public  void getCountProductCart(){
 
         myRefCart.orderByKey().equalTo(USER_ID).addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue()==null){
                     mainActivity.setCountProductCart(0);
-
                 }else {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         mainActivity.setCountProductCart((int) postSnapshot.getChildrenCount());
-
                     }
                 }
 
@@ -253,17 +250,16 @@ public class HomeFragment extends Fragment {
         rcvCategories =mView.findViewById(R.id.rcv_list_categories);
         categoriesAdapter = new CategoriesAdapter(mainActivity);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager( mainActivity,RecyclerView.HORIZONTAL,false);
-    rcvCategories.setLayoutManager(linearLayoutManager);
+        rcvCategories.setLayoutManager(linearLayoutManager);
         categoriesAdapter.setData(getListCategories());
-      rcvCategories.setAdapter(categoriesAdapter);
+         rcvCategories.setAdapter(categoriesAdapter);
     }
 
     private List<Categories> getListCategories() {
         List<Categories> list = new ArrayList<>();
-
         list.add(new Categories("Giường",R.drawable.bead_categories));
         list.add(new Categories("Ghế",R.drawable.chair_categories));
-        list.add(new Categories("Bàn",R.drawable.table_categories));
+        list.add(new Categories("Bàn ăn",R.drawable.table_categories));
         list.add(new Categories("Sofa",R.drawable.sofa_categories));
         list.add(new Categories("Tủ",R.drawable.tuquanao_categories));
         list.add(new Categories("Kệ",R.drawable.kegia_categories));

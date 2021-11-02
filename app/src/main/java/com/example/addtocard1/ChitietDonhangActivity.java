@@ -79,7 +79,6 @@ public class ChitietDonhangActivity extends AppCompatActivity {
                     tvdiachi.setText(donHangObj.getAddress());
                     tvNgaydathang.setText(donHangObj.getDateDatHang());
                     mlistproduct=donHangObj.getListProductDat();
-
                     recyclerView = findViewById(R.id.rcv_dondathang_product);
                     adapter = new ProductDonDatHangAdapter(ChitietDonhangActivity.this);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ChitietDonhangActivity.this);

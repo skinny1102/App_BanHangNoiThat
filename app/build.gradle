@@ -19,7 +19,6 @@ android {
         }
     }
     compileSdk 31
-
     defaultConfig {
         applicationId "com.example.addtocard1"
         minSdk 22

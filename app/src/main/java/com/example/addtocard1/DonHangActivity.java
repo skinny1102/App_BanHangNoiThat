@@ -108,9 +108,10 @@ public class DonHangActivity extends AppCompatActivity {
     }
 
     private void getDateTimenow(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
         dateTime = currentDateandTime;
+        System.out.println(dateTime);
     }
 
     private  void chosseAdress(){

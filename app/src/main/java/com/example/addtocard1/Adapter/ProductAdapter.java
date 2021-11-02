@@ -27,7 +27,6 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.Product
     private IClickAddToCartListener iClickAddToCartListener;
     private AddtoCartProduct addToCartListener ;
     private Context context;
-    private MainActivity mainActivity;
 
     public ProductAdapter(Context context) {
         this.context = context;
@@ -53,7 +52,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.Product
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product,parent,false);
-        mainActivity = (MainActivity) parent.getContext();
+//        mainActivity = (MainActivity) parent.getContext();
         return new ProductViewHolder(view);
     }
 
