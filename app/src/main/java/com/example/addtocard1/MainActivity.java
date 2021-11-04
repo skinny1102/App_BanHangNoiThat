@@ -23,6 +23,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.huawei.agconnect.appmessaging.AGConnectAppMessaging;
+import com.huawei.hmf.tasks.OnFailureListener;
+import com.huawei.hmf.tasks.OnSuccessListener;
+import com.huawei.hmf.tasks.Task;
+import com.huawei.hms.aaid.HmsInstanceId;
+import com.huawei.hms.aaid.entity.AAIDResult;
 //import com.huawei.agconnect.appmessaging.AGConnectAppMessaging;
 
 
@@ -59,15 +65,37 @@ public class MainActivity extends AppCompatActivity  {
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
-
+    private final String TAG = MainActivity.class.getSimpleName();
+    private AGConnectAppMessaging appMessaging;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         getUserInformation();
-//        AGConnectAppMessaging.getInstance().setFetchMessageEnable( true );
 //
+        appMessaging = AGConnectAppMessaging.getInstance();
+        HmsInstanceId inst  = HmsInstanceId.getInstance(this);
+//        Task<AAIDResult> idResult =  inst.getAAID();
+//        idResult.addOnSuccessListener(new OnSuccessListener<AAIDResult>() {
+//            @Override
+//            public void onSuccess(AAIDResult aaidResult) {
+//                String aaid = aaidResult.getId();
+//
+//                Log.d(TAG, "getAAID success:" + aaid );
+//                System.out.println(aaid);
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(Exception e) {
+//                Log.d(TAG, "getAAID failure:" + e);
+//            }
+//        });
+
+        AGConnectAppMessaging.getInstance().setFetchMessageEnable( true );
+        AGConnectAppMessaging.getInstance().setDisplayEnable(true);
+        AGConnectAppMessaging.getInstance().setForceFetch();
 //        AGConnectAppMessaging appMessaging = AGConnectAppMessaging.getInstance();
 //        appMessaging.setDisplayEnable(false);
         viewEndAnimation = findViewById(R.id.view_end_animation);
