@@ -62,6 +62,10 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         mainActivity = (MainActivity) getActivity();
+        HwAds.init(mainActivity);
+
+
+
          USER_ID  = mainActivity.getG_uid();
         getCountProductCart();
         getRcv1();

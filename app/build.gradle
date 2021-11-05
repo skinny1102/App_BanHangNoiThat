@@ -29,10 +29,22 @@ android {
     }
 
     buildTypes {
+
+            debug {
+                packagingOptions {
+                    doNotStrip "*/x86/libucs-credential.so";
+                    doNotStrip "*/x86_64/libucs-credential.so";
+                }
+            }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.my_config
+            packagingOptions {
+                doNotStrip "*/x86/libucs-credential.so";
+                doNotStrip "*/x86_64/libucs-credential.so";
+            }
         }
     }
     compileOptions {
@@ -74,9 +86,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
-
+    ////HSM Kit
     implementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
     implementation 'com.huawei.agconnect:agconnect-appmessaging:1.6.1.300'
     implementation 'com.huawei.hms:hianalytics:5.1.0.301'
 
+  
 }
