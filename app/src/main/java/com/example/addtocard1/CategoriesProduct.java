@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.addtocard1.Adapter.ProductAdapter;
@@ -72,7 +73,9 @@ public class CategoriesProduct extends AppCompatActivity {
                 if(list.size()>0){
                     list.clear();
                 } if (snapshot.getValue()==null){
-                    Toast.makeText(CategoriesProduct.this,"Không có sản phẩm",Toast.LENGTH_LONG).show();
+                    TextView chuacosp = findViewById(R.id.tvchuacosanpham);
+                    chuacosp.setVisibility(View.VISIBLE);
+//                    Toast.makeText(CategoriesProduct.this,"Không có sản phẩm",Toast.LENGTH_LONG).show();
                 }else {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         Product productObj = postSnapshot.getValue(Product.class);

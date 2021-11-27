@@ -59,19 +59,7 @@
                     android:textSize="18sp"
                     android:paddingLeft="25dp"
                     android:layout_marginTop="15dp"></TextView>
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_checkedall"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_weight="2"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:text="All"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="normal"-->
-<!--                    android:background="@color/redCart"-->
-<!--                    android:paddingLeft="25dp"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:layout_marginRight="3dp"-->
-<!--                    android:layout_marginTop="15dp"></TextView>-->
+
                    <TextView
                        android:id="@+id/tv_delete"
                        android:layout_width="0dp"
@@ -85,8 +73,24 @@
                        android:textColor="@color/white"
                        android:layout_marginRight="3dp"
                        android:layout_marginTop="15dp"></TextView>
-
             </LinearLayout>
+            <CheckBox
+                android:visibility="gone"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/checkboxAll">
+            </CheckBox
+>
+            <TextView
+                android:id="@+id/checktrong"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giỏ hàng đang trống"
+                android:gravity="center">
+
+            </TextView>
 
             <!--            ///Listcheck box-->
             <androidx.recyclerview.widget.RecyclerView

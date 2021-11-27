@@ -54,11 +54,13 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/edt_search"
                 android:layout_width="match_parent"
+                android:imeOptions="actionSearch"
                 android:layout_height="50dp"
                 android:ems="7"
+                android:inputType="text"
                 android:hint="@string/hintSearch"
-                android:inputType="textPersonName"
                 android:textStyle="normal"
                 android:paddingStart="20dp"
                 android:drawablePadding="10dp"

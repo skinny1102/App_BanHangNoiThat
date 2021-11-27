@@ -34,7 +34,16 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     private AHBottomNavigation ahBottomNavigation;
     private AHBottomNavigationViewPager ahBottomNavigationViewPager;
     IClickRemoveProductCartListener iClickRemoveProductCartListener;
-    public List<String> listid;
+    public List<String> listid = new ArrayList<>();
+    public  boolean isSelectedAll;
+    public  void selectAll(){
+        isSelectedAll=true;
+        notifyDataSetChanged();
+    }
+    public void unselectall(){
+        isSelectedAll=false;
+        notifyDataSetChanged();
+    }
 
     public String USER_ID;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -74,12 +83,13 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     public void onBindViewHolder(@NonNull ProductCartViewHolder holder, int position) {
         Product product = mListProduct.get(position);
         tongtien +=product.getPriceProduct();
-        listid = new ArrayList<>();
+
         if(product == null){
 //            loadlai();
             notifyDataSetChanged();
             return;
         }else{
+
             Glide.with(context).load(product.getImgResource()).into(holder.imgProduct);
             holder.tvNameProduct.setText(product.getNameProduct());
 
@@ -87,12 +97,14 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
             holder.tvPriceProduct.setText(tiente(product.getPriceProduct()) +" vnđ");
 
             holder.checkBox.setTag(product.idProduct);
+
             holder.checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                         if (holder.checkBox.isChecked()) {
-                             String k=  holder.checkBox.getTag().toString();
+                            String k=  holder.checkBox.getTag().toString();
                             listid.add(k);
+                            System.out.println(listid);
 
                         }else {
                             String k=  holder.checkBox.getTag().toString();
@@ -101,7 +113,19 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
                         }
                 }
             });
-//            holder.checkBox.setChecked(mainActivity.isFlag());
+
+             if (!isSelectedAll){
+                holder.checkBox.setChecked(false);
+                 String k=  holder.checkBox.getTag().toString();
+                 listid.remove(k);
+            }
+            else  {
+                holder.checkBox.setChecked(true);
+                 String k=  holder.checkBox.getTag().toString();
+                 listid.add(k);
+                 System.out.println(listid);
+            };
+
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -139,6 +163,9 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
         return 0;
     }
 
+
+
+
     public class ProductCartViewHolder extends RecyclerView.ViewHolder{
         CheckBox checkBox;
         ImageView imgProduct,imgMinus,imgPlus;
@@ -155,6 +182,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
                 edtQuantity=itemView.findViewById(R.id.edit_quantity);
                 imgMinus=itemView.findViewById(R.id.img_minus);
                 imgPlus=itemView.findViewById(R.id.img_plus);
+
         }
     }
     private String  tiente(int price){

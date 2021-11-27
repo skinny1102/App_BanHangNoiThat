@@ -43,11 +43,11 @@ public class CardFragment extends Fragment {
     private AHBottomNavigationViewPager ahBottomNavigationViewPager;
     MainActivity mainActivity;
     View view;
-    TextView tvDelete,tvTongtien,tvCheckAll,tvDatHang;
+    TextView tvDelete,tvTongtien,tvCheckAll,tvDatHang,checktrong ;
     ImageView imgBack;
     RecyclerView rcvCartProduct;
     ProductCartAdapter productCartAdapter;
-    CheckBox checkBox;
+    CheckBox checkBox,checkboxAll;
     int tongtien;
     public String USER_ID;
     private List<Product> list;
@@ -67,11 +67,13 @@ public class CardFragment extends Fragment {
         deleteChecklist();
         getCartProduct();
         DatHang();
-
+        checkedAll();
         return view;
     }
     private void getview(){
+        checkboxAll = view.findViewById(R.id.checkboxAll);
         tvTongtien=view.findViewById(R.id.tv_tongtien);
+         checktrong = view.findViewById(R.id.checktrong);
     }
     private void getCartProduct(){
         rcvCartProduct = view.findViewById(R.id.rcv_cart_product_list);
@@ -86,29 +88,36 @@ public class CardFragment extends Fragment {
                     list.clear();
                 }
                 if(snapshot.getValue()==null){
-                    loadlai();
-
+//                    checktrong.setVisibility(View.VISIBLE);
+//                    checkboxAll.setVisibility(View.GONE);
+//                    loadlai();
+                    tvTongtien.setText(0 +"vnđ");
                 }
                 tongtien=0;
-                for (DataSnapshot dataSnapshot1:snapshot.getChildren()) {
-                Product productObj= dataSnapshot1.getValue(Product.class);
-                    list.add(new Product(productObj.getIdProduct(),
-                            productObj.getNameProduct(),
-                            productObj.getDescriptionProduct(),
-                            productObj.getPriceProduct(),
-                            productObj.getQuantity(),
-                            productObj.getImgResource(),
-                            productObj.getCategories(),
-                            productObj.getListImgResource()));
-                         tongtien += (productObj.getPriceProduct()*productObj.getQuantity());
-                         tvTongtien.setText(tiente(tongtien)+"vnđ");
+                if(snapshot.getValue()!=null){
+//                    checktrong.setVisibility(View.GONE);
+                    //checkboxAll.setVisibility(View.VISIBLE);
+                    for (DataSnapshot dataSnapshot1:snapshot.getChildren()) {
+                        Product productObj= dataSnapshot1.getValue(Product.class);
+                        list.add(new Product(productObj.getIdProduct(),
+                                productObj.getNameProduct(),
+                                productObj.getDescriptionProduct(),
+                                productObj.getPriceProduct(),
+                                productObj.getQuantity(),
+                                productObj.getImgResource(),
+                                productObj.getCategories(),
+                                productObj.getListImgResource()));
+                        tongtien += (productObj.getPriceProduct()*productObj.getQuantity());
+                        tvTongtien.setText(tiente(tongtien)+"vnđ");
                         productCartAdapter.setData(list, new ProductCartAdapter.IClickRemoveProductCartListener() {
                             @Override
                             public void onClickRemoveProductCart(Product product) {
-                             myRefCart.child(USER_ID).child(product.idProduct).removeValue();
+                                myRefCart.child(USER_ID).child(product.idProduct).removeValue();
                             }
                         });
+                    }
                 }
+
 
             }
 
@@ -142,23 +151,29 @@ public class CardFragment extends Fragment {
         tvTongtien.setText(0+"vnđ");
 
     }
-//    public void checkedAll(){
-//        tvCheckAll = view.findViewById(R.id.tv_checkedall);
-//        tvCheckAll.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mainActivity.setFlag(!mainActivity.isFlag());
-//                productCartAdapter.notifyDataSetChanged();
-//                System.out.println(mainActivity.isFlag());
-//            }
-//        });
-//    }
+    public void checkedAll(){
+
+        checkboxAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkboxAll.isChecked()){
+                    productCartAdapter.selectAll();
+                }
+                else {
+                    productCartAdapter.unselectall();
+                }
+
+
+            }
+        });
+    }
     private void deleteChecklist(){
         tvDelete= view.findViewById(R.id.tv_delete);
         tvDelete.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             List<String> prlistdelte = productCartAdapter.getListid();
+            System.out.println(prlistdelte);
             if (prlistdelte.size()==0){
                 Toast.makeText(mainActivity,"Bạn chưa chọn sản phẩm để xóa",Toast.LENGTH_SHORT).show();
             }
@@ -192,7 +207,7 @@ public class CardFragment extends Fragment {
 
                      intent.putExtra("list_product",(Serializable) list);
                     intent.putExtra("tongtien",tongtien);
-                      intent.putExtra("USER_ID",mainActivity.getG_uid());
+                    intent.putExtra("USER_ID",mainActivity.getG_uid());
                     startActivity(intent);
                 }
 

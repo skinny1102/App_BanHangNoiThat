@@ -25,7 +25,7 @@ import java.util.List;
 
 public class ChitietDonhangActivity extends AppCompatActivity {
     String madonhang;
-    TextView tvmadonhang,tvusername , tvSdt,tvNgaydathang,tvdiachi,tvTongtien;
+    TextView tvmadonhang,tvusername , tvSdt,tvNgaydathang,tvdiachi,tvTongtien,tvtrangthai;
     RecyclerView recyclerView;
     ProductDonDatHangAdapter adapter;
     ImageView imgBack;
@@ -51,6 +51,7 @@ public class ChitietDonhangActivity extends AppCompatActivity {
         tvNgaydathang=findViewById(R.id.tv_ngaydathang);
         tvdiachi = findViewById(R.id.tv_diachi);
         tvTongtien = findViewById(R.id.tv_tongtien);
+        tvtrangthai = findViewById(R.id.tv_trangthai);
 
     }
     private void BackOnclick(){
@@ -74,9 +75,14 @@ public class ChitietDonhangActivity extends AppCompatActivity {
                 DonHang donHangObj = new DonHang();
                 donHangObj=    snapshot.getValue(DonHang.class);
 
-                tvusername.setText(donHangObj.getFullName());
+                      tvusername.setText(donHangObj.getFullName());
                     tvSdt.setText(donHangObj.getSdt());
                     tvdiachi.setText(donHangObj.getAddress());
+                    if(!donHangObj.isTrangThai()){
+                        tvtrangthai.setText("Chưa xác nhận");
+                    }else {
+                        tvtrangthai.setText("Đã xác nhận");
+                    }
                     tvNgaydathang.setText(donHangObj.getDateDatHang());
                     mlistproduct=donHangObj.getListProductDat();
                     recyclerView = findViewById(R.id.rcv_dondathang_product);

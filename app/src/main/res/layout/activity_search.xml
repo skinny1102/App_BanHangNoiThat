@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllDonHangActivity">
+    tools:context=".SearchActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +32,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Đơn hàng của bạn"></TextView>
+                android:text="Tìm kiếm"></TextView>
         </LinearLayout>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -48,29 +48,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:background="@color/white"
-                        android:id="@+id/tv_product_name"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="5dp"
-                        android:gravity="left"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:text="Tất cả đơn hàng"></TextView>
+                        android:orientation="horizontal">
+                        <TextView
+                            android:background="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:gravity="left"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text="Từ khóa :"></TextView>
+                        <TextView
+                            android:background="@color/white"
+                            android:id="@+id/tv_tukhoa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:gravity="left"
+                            android:textStyle="italic"
+                            android:textColor="@color/black"
+                            android:text="Từ khóa :"></TextView>
+                    </LinearLayout>
+
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rcv_donhang"
+                        android:id="@+id/rcv_searchproduct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                       >
-
+                        >
                     </androidx.recyclerview.widget.RecyclerView>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -78,8 +92,6 @@
                         android:paddingLeft="10dp"
                         android:background="@color/white"/>
                 </LinearLayout>
-
-
             </androidx.core.widget.NestedScrollView>
         </androidx.appcompat.widget.LinearLayoutCompat>
 

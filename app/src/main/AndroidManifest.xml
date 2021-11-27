@@ -1,40 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.addtocard1">
-    <meta-data android:name="com.huawei.hms.client.appid" android:value="appid=104902915" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- Allow the app to access Internet.-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--Allow the app to query the network status.-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- Allow the app to read common data. -->
-    <uses-permission android:name="com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA" />
-    <!-- Allow the app to change the WLAN status. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.addtocard1">
+
+    <meta-data
+        android:name="com.huawei.hms.client.appid"
+        android:value="appid=104902915" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Allow the app to access Internet. -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Allow the app to query the network status. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Allow the app to read common data. -->
+    <uses-permission android:name="com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA" /> <!-- Allow the app to change the WLAN status. -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/Theme.Addtocard1">
-        <activity android:name=".CategoriesProduct" android:exported="false" />
-        <activity android:name=".ChitietDonhangActivity" android:exported="false" />
-        <activity android:name=".AllDonHangActivity" android:exported="false" />
-        <activity android:name=".EditProfildeActivity" android:exported="true" />
-        <activity android:name=".VerifyPhoneNumberActivity" android:exported="true" />
-        <activity android:name=".EnterOTPActivity" android:exported="true" />
-        <activity android:name=".AddressActivity" android:exported="true" android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".DonHangActivity" android:exported="true" android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".SignUpActivity" android:exported="true" android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".SigninActivity" android:exported="true" android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".MainActivity" android:exported="true" android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".DetailProductActivity" android:exported="true" />
-        <activity android:name=".SplashActivity" android:exported="true" android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <meta-data android:name="com.huawei.hms.client.channel.androidMarket" android:value="false" />
-    </application>
+
     <queries>
         <intent>
             <action android:name="com.huawei.hms.core.aidlservice" />
         </intent>
     </queries>
-</manifest>
 
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Addtocard1">
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriesProduct"
+            android:exported="false" />
+        <activity
+            android:name=".ChitietDonhangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AllDonHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfildeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".VerifyPhoneNumberActivity"
+            android:exported="true" />
+        <activity
+            android:name=".EnterOTPActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AddressActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".DonHangActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SigninActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".DetailProductActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.huawei.hms.client.channel.androidMarket"
+            android:value="false" />
+    </application>
+
+</manifest>

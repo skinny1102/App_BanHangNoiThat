@@ -43,10 +43,21 @@
             android:layout_height="0dp"
             android:layout_weight="13"
             >
+            <TextView
+                android:id="@+id/tvchuacosanpham"
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Loại này chưa có sản phẩm "></TextView>
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv"
                     android:layout_width="match_parent"

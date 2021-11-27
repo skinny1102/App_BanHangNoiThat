@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity  {
         this.flag = flag;
     }
     private final String TAG = MainActivity.class.getSimpleName();
-    private AGConnectAppMessaging appMessaging;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().hide();
         getUserInformation();
 //
-        appMessaging = AGConnectAppMessaging.getInstance();
-        HmsInstanceId inst  = HmsInstanceId.getInstance(this);
+
+
 //        Task<AAIDResult> idResult =  inst.getAAID();
 //        idResult.addOnSuccessListener(new OnSuccessListener<AAIDResult>() {
 //            @Override
@@ -93,9 +93,7 @@ public class MainActivity extends AppCompatActivity  {
 //            }
 //        });
 
-        AGConnectAppMessaging.getInstance().setFetchMessageEnable( true );
-        AGConnectAppMessaging.getInstance().setDisplayEnable(true);
-        AGConnectAppMessaging.getInstance().setForceFetch();
+
 //        AGConnectAppMessaging appMessaging = AGConnectAppMessaging.getInstance();
 //        appMessaging.setDisplayEnable(false);
         viewEndAnimation = findViewById(R.id.view_end_animation);

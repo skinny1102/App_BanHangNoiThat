@@ -219,7 +219,7 @@ public class DetailProductActivity extends AppCompatActivity {
                                productObj.getImgResource(),
                                productObj.getCategories(),
                                productObj.getListImgResource()));
-                       adapter.setData(listpr);
+                                adapter.setData(listpr);
                    }else {
                        System.out.println("nó vào else");
                        return;

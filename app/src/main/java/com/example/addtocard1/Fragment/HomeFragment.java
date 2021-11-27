@@ -9,12 +9,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.example.addtocard1.Adapter.Categories;
@@ -22,17 +27,20 @@ import com.example.addtocard1.Adapter.CategoriesAdapter;
 import com.example.addtocard1.Animation.AnimationUtil;
 
 import com.example.addtocard1.DetailProductActivity;
+import com.example.addtocard1.Doituong.User;
 import com.example.addtocard1.MainActivity;
 import com.example.addtocard1.Doituong.Product;
 import com.example.addtocard1.Adapter.ProductAdapter;
 import com.example.addtocard1.Adapter.ProductAdapter1;
 import com.example.addtocard1.R;
+import com.example.addtocard1.SearchActivity;
 import com.example.addtocard1.my_Interface.IClickProuductListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.huawei.agconnect.appmessaging.AGConnectAppMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +49,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView rcvProduct,rcvProduct1,rcvCategories;
     private View mView;
+    private EditText edtSearch;
     private MainActivity mainActivity;
     private List<Product> list, list1;
     public String USER_ID ;
@@ -55,6 +64,7 @@ public class HomeFragment extends Fragment {
     DatabaseReference myRef = database.getReference("product");
     DatabaseReference myRefCart = database.getReference("cart");
     DatabaseReference getMyRefCart = database.getReference("card");
+    private AGConnectAppMessaging appMessaging;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,15 +72,17 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         mainActivity = (MainActivity) getActivity();
-
-
-
-
-         USER_ID  = mainActivity.getG_uid();
+        appMessaging = AGConnectAppMessaging.getInstance();
+        AGConnectAppMessaging.getInstance().setFetchMessageEnable( true );
+        AGConnectAppMessaging.getInstance().setDisplayEnable(true);
+        AGConnectAppMessaging.getInstance().setForceFetch();
+        USER_ID  = mainActivity.getG_uid();
         getCountProductCart();
         getRcv1();
         getRcv2();
         getViewCategories();
+        searchProduct();
+//        testall();
         return mView;
     }
     private void getRcv1(){
@@ -247,8 +259,6 @@ public class HomeFragment extends Fragment {
          myIntent.putExtra("obj_product",product);
          myIntent.putExtra("USER_ID",mainActivity.getG_uid());
          mainActivity.startActivity(myIntent);
-
-
     }
     public void getViewCategories(){
         rcvCategories =mView.findViewById(R.id.rcv_list_categories);
@@ -269,7 +279,46 @@ public class HomeFragment extends Fragment {
         list.add(new Categories("Kệ",R.drawable.kegia_categories));
         return list;
     }
+    public void searchProduct(){
+        edtSearch =mView.findViewById(R.id.edt_search);
+        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    String strsearh = edtSearch.getText().toString().trim();
+                    if(strsearh.isEmpty()){
+                        Toast.makeText(mainActivity, "Hãy nhập ", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Intent isearch = new Intent(mainActivity, SearchActivity.class);
+                        isearch.putExtra("strsearh",strsearh);
+                        startActivity(isearch);
+                    }
 
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+//    public  void testall(){
+//        database.getReference("profile").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                System.out.println(snapshot.getChildren());
+//                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+//
+//                    User user1 = postSnapshot.getValue(User.class);
+//                    System.out.println(user1.getFullName());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
 }
 
