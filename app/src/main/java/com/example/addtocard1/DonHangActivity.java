@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -42,7 +43,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class DonHangActivity extends AppCompatActivity {
+public class DonHangActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     RecyclerView recyclerView;
     private String USER_ID;
     ProductDonDatHangAdapter adapter;
@@ -271,5 +272,15 @@ public class DonHangActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

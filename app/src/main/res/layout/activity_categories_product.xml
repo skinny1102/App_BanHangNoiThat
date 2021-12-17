@@ -27,7 +27,6 @@
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"
                 android:id="@+id/img_back"
                 >
-
             </ImageView>
             <TextView
                 android:layout_width="match_parent"
@@ -42,7 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="13"
+            android:orientation="vertical"
             >
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="30px"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/tvchuacosanpham"
                 android:visibility="gone"
@@ -53,6 +58,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:text="Loại này chưa có sản phẩm "></TextView>
+
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

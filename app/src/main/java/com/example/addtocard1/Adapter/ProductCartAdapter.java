@@ -1,6 +1,7 @@
 package com.example.addtocard1.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -145,7 +147,24 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
             public void onClick(View view) {
                 int quantityminus= product.getQuantity()-1;
                 if(quantityminus<1){
-                    Toast.makeText(mainActivity,"Số lượng sản phẩm không hợp lệ",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mainActivity,"Số lượng sản phẩm không hợp lệ",Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder b = new AlertDialog.Builder(mainActivity);
+                    b.setTitle("Thông báo");
+                    b.setMessage("Bạn có muốn xóa sản phẩm này không");
+                    b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            myRefCart.child(USER_ID).child(product.getIdProduct()).removeValue();
+                            Toast.makeText(mainActivity,"Bạn đã xóa"+product.idProduct,Toast.LENGTH_SHORT).show();
+
+                           }
+                         });
+                    b.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+                    b.show();
+
                 }else {
                     myRefCart.child(USER_ID).child(product.getIdProduct()+"/quantity").setValue(quantityminus);
                 }

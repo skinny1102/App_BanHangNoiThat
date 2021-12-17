@@ -90,13 +90,13 @@ public class CardFragment extends Fragment {
                 if(snapshot.getValue()==null){
 //                    checktrong.setVisibility(View.VISIBLE);
 //                    checkboxAll.setVisibility(View.GONE);
-//                    loadlai();
+                    loadlai();
                     tvTongtien.setText(0 +"vnđ");
                 }
                 tongtien=0;
                 if(snapshot.getValue()!=null){
 //                    checktrong.setVisibility(View.GONE);
-                    //checkboxAll.setVisibility(View.VISIBLE);
+//                    checkboxAll.setVisibility(View.VISIBLE);
                     for (DataSnapshot dataSnapshot1:snapshot.getChildren()) {
                         Product productObj= dataSnapshot1.getValue(Product.class);
                         list.add(new Product(productObj.getIdProduct(),
@@ -162,8 +162,6 @@ public class CardFragment extends Fragment {
                 else {
                     productCartAdapter.unselectall();
                 }
-
-
             }
         });
     }
@@ -204,13 +202,11 @@ public class CardFragment extends Fragment {
                     Toast.makeText(mainActivity,"Giỏ hàng đang trống",Toast.LENGTH_LONG).show();
                 }else {
                     Intent intent = new Intent(mainActivity , DonHangActivity.class);
-
-                     intent.putExtra("list_product",(Serializable) list);
+                    intent.putExtra("list_product",(Serializable) list);
                     intent.putExtra("tongtien",tongtien);
                     intent.putExtra("USER_ID",mainActivity.getG_uid());
                     startActivity(intent);
                 }
-
             }
         });
 

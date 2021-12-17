@@ -14,7 +14,6 @@ public class Product implements Serializable {
     public List<String> listImgResource;
     private boolean isAddToCard;
     public Product(){
-
     }
 
     public Product(String idProduct, String nameProduct, String descriptionProduct, int priceProduct, int quantity, String imgResource, String categories, List<String> listImgResource) {
@@ -101,3 +100,15 @@ public class Product implements Serializable {
         isAddToCard = addToCard;
     }
 }
+//        limitToFirst()	Đặt số lượng mục tối đa để trả về từ đầu danh sách kết quả có thứ tự.
+//        limitToLast()	Đặt số lượng mục tối đa để trả về từ cuối danh sách kết quả theo thứ tự.
+//        startAt()	Trả lại các mặt hàng lớn hơn hoặc bằng khóa hoặc giá trị đã chỉ định tùy thuộc vào phương thức theo thứ tự đã chọn.
+//        startAfter()	Trả lại các mặt hàng lớn hơn giá trị hoặc khóa được chỉ định tùy thuộc vào phương thức đặt hàng đã chọn.
+//        endAt()	Trả lại các mặt hàng nhỏ hơn hoặc bằng khóa hoặc giá trị đã chỉ định tùy thuộc vào phương thức theo thứ tự đã chọn.
+//        endBefore()	Trả lại các mặt hàng ít hơn giá trị hoặc khóa được chỉ định tùy thuộc vào phương thức đặt hàng đã chọn.
+//        equalTo()	Trả lại các mặt hàng bằng với khóa hoặc giá trị đã chỉ định tùy thuộc vào phương thức theo thứ tự đã chọn.
+//Query query2 = FirebaseDatabase.getInstance().getReference("Groups").orderByChild("search")
+//        .startAt(s)
+//        .endAt(s+"\uf8ff")
+//Tạo đối tượng
+//

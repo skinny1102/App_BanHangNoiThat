@@ -96,3 +96,24 @@ public class AddressActivity extends AppCompatActivity {
     }
 
 }
+
+//    AlertDialog.Builder b = new AlertDialog.Builder(this);
+////Thiết lập tiêu đề
+//b.setTitle("Xác nhận");
+//        b.setMessage("Bạn có đồng ý thoát chương trình không?");
+//// Nút Ok
+//        b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+//public void onClick(DialogInterface dialog, int id) {
+//        finish();
+//        }
+//        });
+////Nút Cancel
+//        b.setNegativeButton("Không đồng ý", new DialogInterface.OnClickListener() {
+//public void onClick(DialogInterface dialog, int id) {
+//        dialog.cancel();
+//        }
+//        });
+////Tạo dialog
+//        AlertDialog al = b.create();
+////Hiển thị
+//        al.show();

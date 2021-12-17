@@ -89,7 +89,6 @@
                 android:layout_height="wrap_content"
                 android:text="Giỏ hàng đang trống"
                 android:gravity="center">
-
             </TextView>
 
             <!--            ///Listcheck box-->

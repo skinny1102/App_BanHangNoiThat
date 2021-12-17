@@ -9,7 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesProduct extends AppCompatActivity {
+public class CategoriesProduct extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     String Categories;
     RecyclerView rcvProduct;
     ProductAdapter adapter;
@@ -38,6 +41,8 @@ public class CategoriesProduct extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefProduct = database.getReference("product");
     DatabaseReference myRefCart = database.getReference("cart");
+    private Spinner spinner;
+    private static final String[] paths = {"item 1", "item 2", "item 3"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,13 @@ public class CategoriesProduct extends AppCompatActivity {
         getRcv2();
         BackOnclick();
 
+        spinner = (Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
     private void BackOnclick(){
         ImageView imgBack= findViewById(R.id.img_back);
@@ -61,7 +73,6 @@ public class CategoriesProduct extends AppCompatActivity {
 
     }
     private void getRcv2() {
-
         rcvProduct = findViewById(R.id.rcv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvProduct.setLayoutManager(linearLayoutManager);
@@ -131,5 +142,30 @@ public class CategoriesProduct extends AppCompatActivity {
         myIntent.putExtra("obj_product",product);
         myIntent.putExtra("USER_ID",USER_ID);
         startActivity(myIntent);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i) {
+            case 0:
+                // Whatever you want to happen when the first item gets selected
+//                Toast.makeText(CategoriesProduct.this,"Chon 1 ", Toast.LENGTH_LONG).show();
+                break;
+            case 1:
+                // Whatever you want to happen when the second item gets selected
+//                Toast.makeText(CategoriesProduct.this,"Chon 2 ", Toast.LENGTH_LONG).show();
+//                System.out.println(list.size());
+                break;
+            case 2:
+                // Whatever you want to happen when the thrid item gets selected
+//                Toast.makeText(CategoriesProduct.this,"Chon 2 ", Toast.LENGTH_LONG).show();
+                break;
+
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
